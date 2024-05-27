@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            margin: 0px;
+            color: #364497;
+        }
+        p{
+            font-family: sans-serif;
+            font-size: 13px;
+            margin: 0.2rem 0px
+        }
+        #container {
+            flex-direction: row;
+            display: flex; /* or inline-flex */
+            flex-wrap: wrap;
+        }
+        #container > div {
+            margin: 3px;
+            width: 197px;
+            padding: 5px 10px;
+            /* background-color: #f2f2f3; */
+            border: 1px solid #364497;
+            border-radius: 13px;
+            /* box-shadow: 0px 0px 10px #ddd; */
+        }
+        .title {
+            font-weight: bold;
+        }
+
+        select {
+            background: Transparent no-repeat;
+            border-radius:  9999999px;
+            padding: 2px 8px;
+            margin: 0px 0px 20px;
+            border: 1px solid #364497;
+            color: inherit;
+            font-size: inherit;
+        }
+
+        option {
+            background-color: white;
+            margin: 0px;
+            padding: 0px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <select id="dropdown"> 
+    </select>
+    <div id = "table">
+        <div id = "container">
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://d3js.org/d3.v7.js" charset="utf-8"></script>
+<script type="module"> 
+    
+    let globalData; 
+    
+    d3.csv("https://raw.githubusercontent.com/idaflik/data/master/systems_tables.csv")
+    .then(function(data) {
+
+        // Log the data
+        console.log(data);
+
+        globalData = data;
+
+        // Extract user_country values
+        const countries = data.map(d => d.user_country).sort();
+
+        // Get unique user_country values
+        const uniqueCountries = [...new Set(countries)];
+
+        // Log the extracted user_country values
+        console.log(uniqueCountries);
+
+        createDropDown(uniqueCountries);
+
+        // when dropdown is updated, update all data
+        d3.select("#dropdown").on("change", updateData);
+
+        updateData();
+
+        })
+        .catch(function(error) {
+            console.error('Error loading or parsing data:', error);
+    });
+
+    function createDropDown(dataArray) {
+            
+        var options = d3.select("#dropdown")
+            .selectAll("option")
+            .data(dataArray)
+            .enter()
+            .append("option")
+            .text(d => d)
+            .attr("value", d => d);
+        }
+
+    function generateHTMLContent(d) {
+        let htmlContent = '';
+
+        if (d.systems !== "NA") {
+            htmlContent += `<p class="title">${d.systems}</p>`;
+        }
+        if (d.installed !== "NA") {
+            htmlContent += `<p class="status">Status: ${d.installed}</p>`;
+        }
+        if (d.date_of_agreement !== "NA") {
+            htmlContent += `<p>Date of agreement: ${d.date_of_agreement}</p>`;
+        }
+        if (d.entry_into_operation !== "NA") {
+            htmlContent += `<p>Start of operation: ${d.entry_into_operation}</p>`;
+        }
+        if (d.end_of_operation !== "NA") {
+            htmlContent += `<p>End of operation: ${d.end_of_operation}</p>`;
+        }
+        if (d.donors !== "NA" & d.donation_amount !== "NA") {
+            htmlContent += `<p>Donations by: ${d.donors} (${d.donation_amount})</p>`;
+        }
+        if (d.donors !== "NA" & d.donation_amount == "NA") {
+            htmlContent += `<p>Donations by: ${d.donors}</p>`;
+        }
+
+        return htmlContent;
+    }
+
+    function updateData(){
+        const curValue = d3.select("#dropdown").property("value");
+        console.log(curValue)
+        
+        const filteredData = globalData.filter((d) => d.user_country == curValue)
+
+        console.log(filteredData)
+
+        const container = d3.select("#container")
+            .selectAll(".data-div")
+            .data(filteredData, d => d.user_country);
+
+        // Remove old elements
+        container.exit().remove();
+
+        // Update existing elements
+        container.html(generateHTMLContent);
+
+        // Append new elements
+        container.enter()
+            .append("div")
+            .attr("class", "data-div")
+            .html(generateHTMLContent);
+
+    }
+</script>
