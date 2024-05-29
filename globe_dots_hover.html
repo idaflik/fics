@@ -116,13 +116,13 @@
 
         // Fetch the GeoJSON data and create buttons when the page loads
         // this file works: fetch('https://raw.githubusercontent.com/idaflik/data/master/systems_hex_max.geojson')
-        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/hex_countries_outlines_systems_rewound.geojson')
+        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/hex_countries_outlines_systems.geojson')
         .then(res => res.json())
         .then(countries => {
             countriesData = countries; // Store the GeoJSON data globally
             const propertyNames = Object.keys(countries.features[0].properties);
             // Remove 'type' and 'geometry' properties from button creation
-            const excludedProperties = ["name", "name_long", "iso_a2", "iso_a3", "pop_est", "Status"];
+            const excludedProperties = ["name", "name_long", "iso_a2", "iso_a3"];
             const filteredPropertyNames = propertyNames.filter(property => !excludedProperties.includes(property) && property !== 'type' && property !== 'geometry');
             createButtons(filteredPropertyNames);
 
@@ -139,21 +139,21 @@
                 .showAtmosphere(false)
                 // .atmosphereColor("#b6c1e3")
                 // .atmosphereAltitude(0.2)
-                .hexPolygonsData(countriesData.features)
-                .hexPolygonColor(() => "#364497")
+                // .hexPolygonsData(countriesData.features)
+                // .hexPolygonColor(() => "#364497")
                 // .hexPolygonDotResolution(6)
                 // .hexPolygonMargin(0)
                 // .hexPolygonResolution(3) // higher throws error
-                .hexPolygonAltitude(0.005)
-                .hexPolygonUseDots(true)
-                .hexPolygonsTransitionDuration(2000)
-                // .polygonsData(countriesData.features)
-                // .polygonAltitude(0.007)
-                // .polygonSideColor(() => 'rgba(0,0,0,0)')
-                // .polygonStrokeColor(() => '#b6c1e300')
-                // .polygonCapColor(() => '#ffffff00')
-                // .onPolygonHover(hoverD => world
-                //     .polygonStrokeColor(d => d === hoverD ? '#364497' : '#36449700'))
+                // .hexPolygonAltitude(0.005)
+                // .hexPolygonUseDots(true)
+                // .hexPolygonsTransitionDuration(2000)
+                .polygonsData(countriesData.features)
+                .polygonAltitude(0.007)
+                .polygonSideColor(() => 'rgba(0,0,0,0)')
+                .polygonStrokeColor(() => '#b6c1e300')
+                .polygonCapColor(() => '#ffffff00')
+                .onPolygonHover(hoverD => world
+                    .polygonStrokeColor(d => d === hoverD ? '#364497' : '#36449700'))
             (document.getElementById('globeViz'));
                       
             world.pointOfView({ altitude: 1.5 });
