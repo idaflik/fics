@@ -24,7 +24,7 @@
 
     <script type="module">
         // Fetch the GeoJSON data and create buttons when the page loads
-        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/hex_aggregate_data_dateline.geojson')
+        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/hex_aggregate_data_dateline_rewound.geojson')
         .then(res => res.json())
         .then(countries => {
 
@@ -42,11 +42,11 @@
                 .showGlobe(false)
                 .showGraticules(false)
                 .showAtmosphere(false)
-                .polygonsData(countries.features)
-                .polygonCapColor(() => "#ffffff")
-                .polygonStrokeColor(() => "#364497")
-                .polygonSideColor(() => "#36449700")
-                .polygonAltitude(0.005)
+                .hexPolygonsData(countries.features)
+                .hexPolygonColor(() => "#364497")
+                // .polygonSideColor(() => "#36449700")
+                .hexPolygonAltitude(0.005)
+                .hexPolygonMargin(d => dotScale(d.properties.WAPIS))
             (document.getElementById('globeViz'));
         })
         .catch(error => console.error('Error loading or processing GeoJSON data:', error));
