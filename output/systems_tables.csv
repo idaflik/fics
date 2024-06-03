@@ -1,0 +1,375 @@
+user_country,systems,installed,donors,donation_amount,date_of_agreement,entry_into_operation,end_of_operation,continent,iso_a2,iso_a3
+Albania,ATS-G,uncertain,NA,NA,NA,NA,NA,Europe,AL,ALB
+Bahrain,ATS-G,yes,NA,NA,2022,NA,NA,Asia,BH,BHR
+Barbados,ATS-G,yes,NA,NA,NA,NA,NA,North America,BB,BRB
+Bosnia and Herzegovina,ATS-G,yes,NA,NA,NA,NA,NA,Europe,BA,BIH
+Brazil,ATS-G,yes,NA,NA,NA,NA,NA,South America,BR,BRA
+Bulgaria,ATS-G,yes,NA,NA,NA,NA,NA,Europe,BG,BGR
+Costa Rica,ATS-G,yes,NA,NA,NA,NA,NA,North America,CR,CRI
+Dominican Republic,ATS-G,uncertain,NA,NA,NA,NA,NA,North America,DO,DOM
+Ecuador,ATS-G,yes,NA,NA,2020,NA,NA,South America,EC,ECU
+El Salvador,ATS-G,yes,NA,NA,NA,NA,NA,North America,SV,SLV
+Greece,ATS-G,yes,NA,NA,NA,NA,NA,Europe,GR,GRC
+Guatemala,ATS-G,yes,NA,NA,2021,NA,NA,North America,GT,GTM
+Kenya,ATS-G,yes,US,NA,2018,NA,NA,Africa,KE,KEN
+Italy,ATS-G,uncertain,NA,NA,NA,NA,NA,Europe,IT,ITA
+Malaysia,ATS-G,uncertain,NA,NA,NA,NA,NA,Asia,MY,MYS
+Mexico,ATS-G,yes,NA,NA,NA,NA,NA,North America,MX,MEX
+North Macedonia,ATS-G,yes,NA,NA,NA,NA,NA,Europe,MK,MKD
+Panama,ATS-G,yes,US,NA,NA,NA,NA,North America,PA,PAN
+Paraguay,ATS-G,yes,NA,NA,2021,NA,NA,South America,PY,PRY
+Peru,ATS-G,yes,NA,NA,NA,2016,NA,South America,PE,PER
+Qatar,ATS-G,uncertain,NA,NA,NA,NA,NA,Asia,QA,QAT
+New Zealand,ATS-G,yes,NA,NA,2011-12,2011,NA,Oceania,NZ,NZL
+Senegal,ATS-G,yes,NA,NA,NA,NA,NA,Africa,SN,SEN
+Taiwan,ATS-G,uncertain,NA,NA,NA,NA,NA,Asia,TW,TWN
+United States,ATS-G,yes,NA,NA,NA,NA,NA,North America,US,USA
+Uzbekistan,ATS-G,uncertain,NA,NA,NA,NA,NA,Asia,UZ,UZB
+CARICOM IMPACS,ATS-G,yes,US,$1 million,2018,NA,NA,North America,NA,NA
+Afghanistan,PISCES,yes,US,"US: $ amount unknown, provided PISCES system, covered by FY 2017 TIP funding.",NA,2012,NA,Asia,AF,AFG
+Albania,PISCES,replaced,US,"US: $ amount unknown, provided PISCES system.",NA,2020,NA,Europe,AL,ALB
+Azerbaijan,PISCES,yes,US,"US: $ amount unknown, provided PISCES system + funded refurbishments.",NA,NA,2007 (uncertain),Asia,AZ,AZE
+Bosnia and Herzegovina,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",2019 (uncertain),NA,NA,Europe,BA,BIH
+Burkina Faso,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,BF,BFA
+Cambodia,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Asia,KH,KHM
+Cameroon,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,2016,NA,Africa,CM,CMR
+Chad,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,2013,NA,Africa,TD,TCD
+Colombia,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",2022,NA,NA,South America,CO,COL
+Comoros,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",2015,NA,NA,Africa,KM,COM
+Côte d'Ivoire,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,CI,CIV
+Democratic Republic of the Congo,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,CD,COD
+Djibouti,PISCES,yes,US,"US: $ amount unknown (at least $500,000 proposed in leaked memo), provided PISCES system + funded refurbishments",NA,2015,NA,Africa,DJ,DJI
+Ecuador,PISCES,yes,US,"US: $ amount unknown, provided PISCES system + funded refurbishments.",2019 (uncertain),NA,NA,South America,EC,ECU
+Ethiopia,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,ET,ETH
+eSwatini,PISCES,uncertain,NA,NA,2022,NA,NA,Africa,SZ,SWZ
+Georgia,PISCES,uncertain,NA,NA,NA,NA,NA,Asia,GE,GEO
+Ghana,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,GH,GHA
+Guinea,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,GN,GIN
+Iraq,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,~2003,NA,Asia,IQ,IRQ
+Jordan,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Asia,JO,JOR
+Kenya,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,KE,KEN
+Kosovo,PISCES,uncertain (may have been replaced),"US (via ICITAP), EU (via EULEX)","US: $ amount unknown, provided PISCES system.",NA,2009,2012 (uncertain),Europe,NA,NA
+Madagascar,PISCES,yes,US,"US: $500,000",NA,2016,NA,Africa,MG,MDG
+Malaysia,PISCES,yes,US (uncertain),NA,NA,2013,NA,Asia,MY,MYS
+Maldives,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,2016 (uncertain),NA,Seven seas (open ocean),MV,MDV
+Mali,PISCES,uncertain (may have been replaced),US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,ML,MLI
+Malta,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",2004,NA,NA,Europe,MT,MLT
+Mauritania,PISCES,uncertain (may have been replaced),US,"US: $ amount unknown, provided PISCES system.",2022,NA,NA,Africa,MR,MRT
+Nepal,PISCES,uncertain,NA,NA,NA,NA,NA,Asia,NP,NPL
+Nicaragua,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,2005,NA,North America,NI,NIC
+Niger,PISCES,yes,US,"US: $3 million (for upgraded facilities, MIDAS/PISCES interoperability), provided PISCES system",NA,NA,NA,Africa,NE,NER
+Nigeria,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,NG,NGA
+North Macedonia,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Europe,MK,MKD
+Panama,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,North America,PA,PAN
+Pakistan,PISCES,replaced,US,"US: >$38mil, provided PISCES system.",NA,2002,2011 (uncertain),Asia,PK,PAK
+Philippines,PISCES,yes,NA,NA,NA,NA,NA,Asia,PH,PHL
+Somalia,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,SO,SOM
+South Sudan,PISCES,uncertain (said to have been in talks or testing),US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,SS,SSD
+Sri Lanka,PISCES,uncertain,NA,NA,In talks 2021,NA,NA,Asia,LK,LKA
+Sudan,PISCES,yes,US,"US: $ amount unknown, provided PISCES system + funded refurbishments.",NA,NA,NA,Africa,SD,SDN
+Tanzania,PISCES,uncertain (may have been replaced),US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Africa,TZ,TZA
+Thailand,PISCES,yes,US,"US: $ amount unknown, provided PISCES system + funded refurbishments.",NA,NA,NA,Asia,TH,THA
+Trinidad and Tobago,PISCES,yes,US,"US: $ amount unknown, provided PISCES system + funded refurbishments.",2017,2017/2018 (uncertain),NA,North America,TT,TTO
+Uganda,PISCES,yes,US,"US: $ amount unknown, provided PISCES system, with involvement of US Bureau of Counterterrorism.",NA,NA,NA,Africa,UG,UGA
+Yemen,PISCES,yes,US,"US: $ amount unknown, provided PISCES system.",NA,NA,NA,Asia,YE,YEM
+Zambia,PISCES,yes,US,"US: $ amount unknown, provided PISCES system + funded refurbishments.",NA,NA,NA,Africa,ZM,ZMB
+Afghanistan,MIDAS,yes,IOM (uncertain),NA,NA,NA,NA,Asia,AF,AFG
+Belize,MIDAS,yes,IOM,"IOM: $100,000 (see https://www.iom.int/sites/g/files/tmzbdl486/files/developmentfund/publications/ibm-thematic-review-final.pdf and https://www.iom.int/project/enhancing-migration-management-belize-through-upgrade-migration-information-data-analysis-system-midas)",NA,2012,NA,North America,BZ,BLZ
+Benin,MIDAS,yes,"IOM, Germany",NA,NA,NA,NA,Africa,BJ,BEN
+Burkina Faso,MIDAS,yes,"IOM, US (Department of State), Japan, EU (uncertain)","IOM: $ amount unknown, provided MIDAS system + training",NA,2016,NA,Africa,BF,BFA
+Burundi,MIDAS,yes,IOM,NA,NA,2024 (uncertain),NA,Africa,BI,BDI
+Cambodia,MIDAS,yes,"IOM, Canada",NA,NA,NA,NA,Asia,KH,KHM
+Central African Republic,MIDAS,yes,IOM,"IOM: budget of $200,000.00 (https://www.iom.int/project/strengthening-border-management-central-african-republic)",NA,2023,NA,Africa,CF,CAF
+Chad,MIDAS,yes,"IOM, Germany (Ministry of Foreign Affairs), Italy (Agency for Development Cooperation)",Germany (via IOM): 5 million Euro,NA,NA,NA,Africa,TD,TCD
+Côte d'Ivoire,MIDAS,yes,"IOM, US",NA,NA,NA,NA,Africa,CI,CIV
+Democratic Republic of the Congo,MIDAS,yes,Belgium,"Belgium: 230,000 Euro",NA,NA,NA,Africa,CD,COD
+Djibouti,MIDAS,yes,"US, IOM, EU, Germany",IOM (backed by EU and Germany): donated equipment,NA,2022,NA,Africa,DJ,DJI
+Ecuador,MIDAS,yes,NA,NA,NA,NA,NA,South America,EC,ECU
+Ethiopia,MIDAS,yes,"Germany, Switzerland (State Secretariat for Migration), EU, IOM",Germany: 2 million Euro,NA,NA,NA,Africa,ET,ETH
+eSwatini,MIDAS,yes,NA,NA,2022,NA,NA,Africa,SZ,SWZ
+Fiji,MIDAS,yes,IOM,NA,2020 (uncertain),2020 (uncertain),NA,Oceania,FJ,FJI
+Georgia,MIDAS,uncertain,EU,NA,NA,NA,NA,Asia,GE,GEO
+Ghana,MIDAS,yes,"US, Germany, IOM",NA,NA,NA,NA,Africa,GH,GHA
+Guinea,MIDAS,yes,"US, IOM, Japan","Japan: $1,573,000",NA,NA,NA,Africa,GN,GIN
+Haiti,MIDAS,yes,"US, IOM",NA,NA,NA,NA,North America,HT,HTI
+Iraq,MIDAS,yes,"Canada, US, IOM",NA,NA,2021,NA,Asia,IQ,IRQ
+Jamaica,MIDAS,uncertain,NA,NA,NA,NA,NA,North America,JM,JAM
+Jordan,MIDAS,yes,"IOM, Japan","Japan (via IOM): at least  $754,953",NA,2022,NA,Asia,JO,JOR
+Liberia,MIDAS,yes,IOM,NA,NA,2017,NA,Africa,LR,LBR
+Libya,MIDAS,yes,"US (via IoM), IOM",NA,2021,NA,NA,Africa,LY,LBY
+Madagascar,MIDAS,yes,NA,NA,NA,NA,NA,Africa,MG,MDG
+Malawi,MIDAS,yes,"IOM, World Bank",NA,NA,NA,NA,Africa,MW,MWI
+Mali,MIDAS,yes,"IOM, Japan, UN MINUSMA, EU (EUCAP-Sahel)","IOM: $ amount unknown, provided MIDAS system + training. EU/Frontex: 4 million Euros (for training, establishing interoperability)",NA,NA,NA,Africa,ML,MLI
+Marshall Islands,MIDAS,yes,"IOM, Japan (uncertain)",NA,2018,NA,NA,Oceania,MH,MHL
+Mauritania,MIDAS,yes,NA,NA,NA,NA,NA,Africa,MR,MRT
+Niger,MIDAS,yes,"IOM, EU, Japan, Canada, Switzerland, Denmark, Germany, UK, Italy, US","IOM: at least $4,500,000 (sought furether funding), provided MIDAS system + training. US: $3 million (for upgraded facilities, MIDAS/PISCES interoperability)",NA,2016,NA,Africa,NE,NER
+Nigeria,MIDAS,yes,"EU, Switzerland, Japan, Denmark, Germany, Norway, Canada","Japan (via IOM): $910,000. Canada: ""56 desktop computers, 50 sets of fingerprint scanners, passport readers and webcams, among other items"" (source: https://nigeria.un.org/en/107042-un-canada-hand-over-midas-equipment-nigeria-immigration-service-international-travel-resumes)",NA,2016,NA,Africa,NG,NGA
+Panama,MIDAS,yes,US,NA,NA,NA,NA,North America,PA,PAN
+Paraguay,MIDAS,yes,IOM,"IOM: MIDAS: $321600, $200000 (see https://www.iom.int/sites/g/files/tmzbdl486/files/developmentfund/publications/ibm-thematic-review-final.pdf)",NA,2015 (uncertain),NA,South America,PY,PRY
+Philippines,MIDAS,yes,NA,NA,NA,NA,NA,Asia,PH,PHL
+Republic of the Congo,MIDAS,yes,NA,NA,NA,NA,NA,Africa,CG,COG
+Sierra Leone,MIDAS,yes,IOM,NA,NA,2023,NA,Africa,SL,SLE
+Somalia,MIDAS,yes,"US, EU, Germany, IOM","US: donation of  $387,000 for MIDAS and ""TIP equipment"" (i.e. PISCES?), plus $749,702 (via IOM) for fingerprint scanners. EU: €307.5 million in total via EUTF. IOM: provided MIDAS, fingerprint scanners, and training.",NA,NA,NA,Africa,SO,SOM
+Somaliland,MIDAS,yes,Japan,NA,NA,NA,NA,Africa,NA,NA
+South Sudan,MIDAS,yes,Japan,NA,NA,2011,NA,Africa,SS,SSD
+Sudan,MIDAS,yes,IOM< EU,IOM (backed by EU): provided training,NA,NA,NA,Africa,SD,SDN
+Tanzania,MIDAS,yes,"IOM, EU",NA,NA,NA,NA,Africa,TZ,TZA
+Democratic Republic of the Congo,MIDAS,yes,Belgium (uncertain),NA,NA,NA,NA,Africa,CD,COD
+Gambia,MIDAS,yes,"IOM, Japan, International Trade Centre,  UNDP, UNICEF",Japan: $2.58 million,NA,2021,NA,Africa,GM,GMB
+Timor-Leste,MIDAS,yes,"Australia, IOM","IOM: $200,000; Australia: $1.5mil",NA,2022,NA,Asia,TL,TLS
+Togo,MIDAS,yes,"US, Germany, IOM",NA,NA,2022,NA,Africa,TG,TGO
+Tonga,MIDAS,yes,IOM,NA,NA,NA,NA,Oceania,TO,TON
+Tunisia,MIDAS,yes,IOM,NA,NA,NA,NA,Africa,TN,TUN
+Trinidad and Tobago,MIDAS,yes,NA,NA,NA,NA,NA,North America,TT,TTO
+Turkmenistan,MIDAS,yes,IOM,NA,NA,NA,NA,Asia,TM,TKM
+Uganda,MIDAS,yes,"US, Japan",NA,NA,NA,NA,Africa,UG,UGA
+Zambia,MIDAS,yes,IOM,NA,NA,NA,NA,Africa,ZM,ZMB
+Vanuatu,MIDAS,yes,Japan,NA,NA,NA,NA,Oceania,VU,VUT
+Pakistan,GTAS,yes,NA,NA,2019,2019,NA,Asia,PK,PAK
+Maldives,GTAS,yes,NA,NA,NA,2019,NA,Seven seas (open ocean),MV,MDV
+Uganda,GTAS,yes,NA,NA,NA,2017,NA,Africa,UG,UGA
+Laos,GTAS,yes,NA,NA,NA,2020,NA,Asia,LA,LAO
+Cambodia,GTAS,yes,NA,NA,NA,2020,NA,Asia,KH,KHM
+Bermuda,GTAS,yes,NA,NA,NA,2020,NA,NA,NA,NA
+Sri Lanka,GTAS,uncertain,NA,NA,NA,NA,NA,Asia,LK,LKA
+Afghanistan,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,AF,AFG
+Albania,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,AL,ALB
+Algeria,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,DZ,DZA
+Andorra,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,AD,AND
+Angola,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,AO,AGO
+Antigua and Barbuda,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,AG,ATG
+Argentina,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,AR,ARG
+Armenia,"I-24/7, FIND, MIND",NA,NA,NA,I-24/7: 2006,NA,NA,Asia,AM,ARM
+Aruba,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,AW,ABW
+Australia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,AU,AUS
+Austria,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,AT,AUT
+Azerbaijan,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,AZ,AZE
+Bahamas,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,BS,BHS
+Bahrain,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,BH,BHR
+Bangladesh,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,BD,BGD
+Barbados,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,BB,BRB
+Belarus,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,BY,BLR
+Belgium,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,BE,BEL
+Belize,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,BZ,BLZ
+Benin,"I-24/7, FIND, MIND",NA,NA,NA,NA,WAPIS: 2013,NA,Africa,BJ,BEN
+Bhutan,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,BT,BTN
+Bolivia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,BO,BOL
+Bosnia and Herzegovina,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,BA,BIH
+Botswana,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,BW,BWA
+Brazil,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,BR,BRA
+Brunei,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,BN,BRN
+Bulgaria,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,BG,BGR
+Burkina Faso,"I-24/7, FIND, MIND, WAPIS",NA,NA,NA,WAPIS: 2016,NA,NA,Africa,BF,BFA
+Burundi,"I-24/7, FIND, MIND",NA,EAC,NA,NA,NA,NA,Africa,BI,BDI
+Cape Verde,"I-24/7, FIND, MIND, WAPIS",NA,NA,NA,NA,WAPIS: 2023,NA,Africa,CV,CPV
+Cambodia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,KH,KHM
+Cameroon,"I-24/7, FIND, MIND",NA,CEMAC,NA,NA,NA,NA,Africa,CM,CMR
+Canada,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,CA,CAN
+Central African Republic,"I-24/7, FIND, MIND",NA,CEMAC,NA,NA,NA,NA,Africa,CF,CAF
+Chad,"I-24/7, FIND, MIND, WAPIS",NA,CEMAC,NA,WAPIS: 2016,NA,NA,Africa,TD,TCD
+Chile,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,CL,CHL
+China,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,CN,CHN
+Colombia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,CO,COL
+Comoros,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,KM,COM
+Costa Rica,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,CR,CRI
+Côte d'Ivoire,"I-24/7, FIND, MIND, WAPIS",NA,NA,NA,WAPIS: 2016,NA,NA,Africa,CI,CIV
+Croatia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,HR,HRV
+Cuba,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,CU,CUB
+Curaçao,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,CW,CUW
+Cyprus,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,CY,CYP
+Czech Republic,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,CZ,CZE
+Democratic Republic of the Congo,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,CD,COD
+Denmark,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,DK,DNK
+Djibouti,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,DJ,DJI
+Dominica,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,DM,DMA
+Dominican Republic,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,DO,DOM
+Ecuador,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,EC,ECU
+Egypt,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,EG,EGY
+El Salvador,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,SV,SLV
+Equatorial Guinea,"I-24/7, FIND, MIND",NA,CEMAC,NA,NA,NA,NA,Africa,GQ,GNQ
+Eritrea,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,ER,ERI
+Estonia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,EE,EST
+eSwatini,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,SZ,SWZ
+Ethiopia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,ET,ETH
+Europol,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,NA,NA
+Fiji,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,FJ,FJI
+Finland,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,FI,FIN
+France,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,FR,FRA
+Gabon,"I-24/7, FIND, MIND",NA,CEMAC,NA,NA,NA,NA,Africa,GA,GAB
+Gambia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,GM,GMB
+Georgia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,GE,GEO
+Germany,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,DE,DEU
+Ghana,"I-24/7, FIND, MIND, WAPIS",NA,NA,NA,NA,"WAPIS: 2013, I-24/7: 2021",NA,Africa,GH,GHA
+Greece,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,GR,GRC
+Grenada,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,GD,GRD
+Guatemala,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,GT,GTM
+Guinea,"I-24/7, FIND, MIND, WAPIS",NA,NA,NA,NA,WAPIS: 2023,NA,Africa,GN,GIN
+Guinea-Bissau,"I-24/7, FIND, MIND, WAPIS",NA,NA,NA,NA,WAPIS: 2023,NA,Africa,GW,GNB
+Guyana,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,GY,GUY
+Haiti,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,HT,HTI
+Honduras,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,HN,HND
+Hungary,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,HU,HUN
+Iceland,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,IS,ISL
+India,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,IN,IND
+Indonesia,"I-24/7, FIND, MIND",NA,"US (CT Bureau): financial support for I-24/7 rollout, $ amount unknown.",NA,NA,NA,NA,Asia,ID,IDN
+Iran,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,IR,IRN
+Iraq,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,IQ,IRQ
+Ireland,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,IE,IRL
+Israel,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,IL,ISR
+Italy,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,IT,ITA
+Jamaica,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,JM,JAM
+Japan,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,JP,JPN
+Jordan,"I-24/7, FIND, MIND",NA,EU,NA,NA,NA,NA,Asia,JO,JOR
+Kazakhstan,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,KZ,KAZ
+Kenya,"I-24/7, FIND, MIND",NA,EAC,NA,NA,NA,NA,Africa,KE,KEN
+Kiribati,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,KI,KIR
+South Korea,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,KR,KOR
+Kuwait,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,KW,KWT
+Kyrgyzstan,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,KG,KGZ
+Laos,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,LA,LAO
+Latvia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,LV,LVA
+Lebanon,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,LB,LBN
+Lesotho,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,LS,LSO
+Liberia,"I-24/7, FIND, MIND, WAPIS",NA,NA,NA,NA,WAPIS: 2023,NA,Africa,LR,LBR
+Libya,"I-24/7, FIND, MIND",NA,"US (CT Bureau): financial support for I-24/7 rollout, $ amount unknown.",NA,NA,NA,NA,Africa,LY,LBY
+Liechtenstein,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,LI,LIE
+Lithuania,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,LT,LTU
+Luxembourg,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,LU,LUX
+Madagascar,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,MG,MDG
+Malawi,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,MW,MWI
+Malaysia,"I-24/7, FIND, MIND",NA,"US (CT Bureau): financial support for I-24/7 rollout, $ amount unknown.",NA,NA,NA,NA,Asia,MY,MYS
+Maldives,"I-24/7, FIND, MIND",NA,"US (CT Bureau): financial support for I-24/7 rollout, $ amount unknown.",NA,NA,NA,NA,Seven seas (open ocean),MV,MDV
+Mali,"I-24/7, FIND, MIND, WAPIS",NA,"US (CT Bureau): financial support for I-24/7 rollout, $ amount unknown.",NA,NA,WAPIS: 2013,NA,Africa,ML,MLI
+Malta,"I-24/7, FIND, MIND",NA,FIND/MIND: EU Internal Security Funds,"FIND/MIND: €1,232,931.26",NA,NA,NA,Europe,MT,MLT
+Marshall Islands,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,MH,MHL
+Mauritania,"I-24/7, FIND, MIND, WAPIS",NA,NA,NA,WAPIS: 2016,NA,NA,Africa,MR,MRT
+Mauritius,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Seven seas (open ocean),MU,MUS
+Mexico,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,MX,MEX
+Micronesia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,FM,FSM
+Moldova,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,MD,MDA
+Monaco,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,MC,MCO
+Mongolia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,MN,MNG
+Montenegro,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,ME,MNE
+Morocco,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,MA,MAR
+Mozambique,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,MZ,MOZ
+Myanmar,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,MM,MMR
+Namibia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,NA,NAM
+Nauru,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,NR,NRU
+Nepal,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,NP,NPL
+Netherlands,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,NL,NLD
+New Zealand,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,NZ,NZL
+Nicaragua,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,NI,NIC
+Niger,"I-24/7, FIND, MIND, WAPIS",NA,"US (CT Bureau): financial support for I-24/7 rollout, $ amount unknown.",NA,NA,WAPIS: 2013,NA,Africa,NE,NER
+Nigeria,"I-24/7, FIND, MIND, WAPIS",NA,"US (CT Bureau): financial support for I-24/7 rollout, $ amount unknown.",NA,WAPIS: 2019,NA,NA,Africa,NG,NGA
+North Macedonia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,MK,MKD
+Norway,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,NO,NOR
+Oman,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,OM,OMN
+Pakistan,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,PK,PAK
+Palau,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,PW,PLW
+Palestine,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,PS,PSE
+Panama,"I-24/7, FIND, MIND",NA,NA,NA,NA,I-24/7: 2014,NA,North America,PA,PAN
+Papua New Guinea,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,PG,PNG
+Paraguay,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,PY,PRY
+Peru,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,PE,PER
+Philippines,"I-24/7, FIND, MIND",NA,"US (CT Bureau): financial support for I-24/7 rollout, $ amount unknown.",NA,NA,NA,NA,Asia,PH,PHL
+Poland,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,PL,POL
+Portugal,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,PT,PRT
+Qatar,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,QA,QAT
+Republic of the Congo,"I-24/7, FIND, MIND",NA,CEMAC,NA,NA,NA,NA,Africa,CG,COG
+Romania,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,RO,ROU
+Russia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,RU,RUS
+Rwanda,"I-24/7, FIND, MIND",NA,EAC,NA,NA,NA,NA,Africa,RW,RWA
+Samoa,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,WS,WSM
+San Marino,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,SM,SMR
+São Tomé and Principe,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,ST,STP
+Saudi Arabia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,SA,SAU
+Senegal,"I-24/7, FIND, MIND, WAPIS",NA,NA,NA,NA,WAPIS: 2022,NA,Africa,SN,SEN
+Serbia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,RS,SRB
+Seychelles,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Seven seas (open ocean),SC,SYC
+Sierra Leone,"I-24/7, FIND, MIND, WAPIS",NA,NA,NA,NA,WAPIS: 2022,NA,Africa,SL,SLE
+Singapore,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,SG,SGP
+Sint Maarten,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,SX,SXM
+Slovakia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,SK,SVK
+Slovenia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,SI,SVN
+Solomon Islands,"I-24/7, FIND, MIND",NA,NA,NA,I-24/7: 2022,NA,NA,Oceania,SB,SLB
+Somalia,"I-24/7, FIND, MIND",NA,NA,NA,I-24/7: 2007,I-24/7: 2007,NA,Africa,SO,SOM
+South Africa,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,ZA,ZAF
+South Sudan,"I-24/7, FIND, MIND",NA,EAC,NA,NA,NA,NA,Africa,SS,SSD
+Spain,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,ES,ESP
+Sri Lanka,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,LK,LKA
+Saint Kitts and Nevis,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,KN,KNA
+Saint Lucia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,LC,LCA
+Saint Vincent and the Grenadines,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,VC,VCT
+Sudan,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,SD,SDN
+Suriname,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,SR,SUR
+Sweden,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,SE,SWE
+Switzerland,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,CH,CHE
+Syria,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,SY,SYR
+Tajikistan,"I-24/7, FIND, MIND",NA,"US (CT Bureau): financial support for I-24/7 rollout, $ amount unknown.",NA,NA,NA,NA,Asia,TJ,TJK
+Tanzania,"I-24/7, FIND, MIND",NA,EAC,NA,NA,NA,NA,Africa,TZ,TZA
+Thailand,"I-24/7, FIND, MIND",NA,"US (CT Bureau): financial support for I-24/7 rollout, $ amount unknown.",NA,NA,NA,NA,Asia,TH,THA
+Gambia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,GM,GMB
+Timor-Leste,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,TL,TLS
+Togo,"I-24/7, FIND, MIND, WAPIS",NA,NA,NA,NA,WAPIS: 2022,NA,Africa,TG,TGO
+Tonga,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,TO,TON
+Trinidad and Tobago,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,TT,TTO
+Tunisia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,TN,TUN
+Turkey,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,TR,TUR
+Turkmenistan,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,TM,TKM
+Uganda,"I-24/7, FIND, MIND",NA,EAC,NA,NA,NA,NA,Africa,UG,UGA
+Ukraine,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,UA,UKR
+United Arab Emirates,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,AE,ARE
+United Kingdom,"I-24/7, FIND, MIND",NA,NA,NA,I-24/7: 2004,NA,NA,Europe,GB,GBR
+United States,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,North America,US,USA
+Uruguay,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,UY,URY
+Uzbekistan,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,UZ,UZB
+Vanuatu,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Oceania,VU,VUT
+Vatican,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Europe,VA,VAT
+Venezuela,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,South America,VE,VEN
+Viet Nam,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,VN,VNM
+Yemen,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Asia,YE,YEM
+Zambia,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,ZM,ZMB
+Zimbabwe,"I-24/7, FIND, MIND",NA,NA,NA,NA,NA,NA,Africa,ZW,ZWE
+Belgium,goTravel,uncertain,NA,NA,2023,NA,NA,Europe,BE,BEL
+Democratic Republic of the Congo,goTravel,uncertain,NA,NA,2024,NA,NA,Africa,CD,COD
+Libya,goTravel,uncertain,NA,NA,NA,NA,NA,Africa,LY,LBY
+Niger,goTravel,uncertain,NA,NA,NA,NA,NA,Africa,NE,NER
+Tunisia,goTravel,uncertain,NA,NA,NA,NA,NA,Africa,TN,TUN
+Fiji,goTravel,uncertain (in discussion),NA,NA,2023,NA,NA,Oceania,FJ,FJI
+Iraq,goTravel,uncertain (in discussion),NA,NA,NA,NA,NA,Asia,IQ,IRQ
+Mali,goTravel,uncertain (in discussion),NA,NA,NA,NA,NA,Africa,ML,MLI
+Pakistan,goTravel,uncertain (in discussion),NA,NA,NA,NA,NA,Asia,PK,PAK
+Samoa,goTravel,uncertain (in discussion),NA,NA,2023,NA,NA,Oceania,WS,WSM
+Sierra Leone,goTravel,uncertain (in discussion),NA,NA,NA,NA,NA,Africa,SL,SLE
+Sri Lanka,goTravel,uncertain (in discussion),NA,NA,2019,NA,NA,Asia,LK,LKA
+Algeria,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,NA,NA,NA,Africa,DZ,DZA
+Armenia,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,NA,NA,NA,Asia,AM,ARM
+Bolivia,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,NA,NA,NA,South America,BO,BOL
+Cambodia,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,NA,NA,NA,Asia,KH,KHM
+Ghana,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,NA,NA,NA,Africa,GH,GHA
+Guatemala,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,NA,NA,NA,North America,GT,GTM
+Kyrgyzstan,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,2024,NA,NA,Asia,KG,KGZ
+Paraguay,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,NA,NA,NA,South America,PY,PRY
+South Africa,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,NA,NA,NA,Africa,ZA,ZAF
+Tajikistan,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,NA,NA,NA,Asia,TJ,TJK
+Maldives,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,NA,NA,NA,Seven seas (open ocean),MV,MDV
+Togo,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,2022,2022 (pre-production operation),NA,Africa,TG,TGO
+Ukraine,goTravel,"uncertain (mentioned as ""ongoing implementation"")",NA,NA,NA,NA,NA,Europe,UA,UKR
+Azerbaijan,goTravel,yes,IOM Development Fund,NA,2021,2023,NA,Asia,AZ,AZE
+Botswana,goTravel,yes,NA,NA,NA,2022 (full operation),NA,Africa,BW,BWA
+Djibouti,goTravel,yes,NA,NA,2023,NA,NA,Africa,DJ,DJI
+Mongolia,goTravel,yes,"EU, Netherlands, Qatar, Germany, Australia, US, India, Japan, Hungary, South Korea",NA,2022,2024,NA,Asia,MN,MNG
+Norway,goTravel,yes,NA,NA,NA,2022 (full operation),NA,Europe,NO,NOR
+CARICOM IMPACS,goTravel,yes (pre-production testing),NA,NA,2021,2021 (pre-production operation),NA,North America,NA,NA
+Côte d'Ivoire,goTravel,yes (pre-production testing),NA,NA,2021,2021 (pre-production operation),NA,Africa,CI,CIV
+Luxembourg,goTravel,yes (pre-production testing),NA,NA,2023,2022 (pre-production operation),NA,Europe,LU,LUX
+Moldova,goTravel,yes (pre-production testing),NA,NA,2022,2022 (pre-production operation),NA,Europe,MD,MDA
+Morocco,goTravel,yes (pre-production testing),NA,NA,NA,NA,NA,Africa,MA,MAR
+Namibia,goTravel,yes (pre-production testing),NA,NA,NA,2022 (pre-production operation),NA,Africa,NA,NAM
+Philippines,goTravel,yes (pre-production testing),NA,NA,NA,2021 (pre-production operation),NA,Asia,PH,PHL
+Sudan,goTravel,yes (pre-production testing),NA,NA,2020,NA,NA,Africa,SD,SDN
+Switzerland,goTravel,yes (pre-production testing),NA,NA,NA,2021 (pre-production operation),NA,Europe,CH,CHE
+Gambia,goTravel,yes (pre-production testing),NA,NA,2022,NA,NA,Africa,GM,GMB
+Mexico,WCC,yes (WCC ELISE ID platform),NA,NA,NA,NA,NA,North America,MX,MEX
+eu-LISA / EU VIS,WCC,yes (WCC ELISE ID platform),NA,NA,NA,NA,NA,Europe,NA,NA
+UN HCR,WCC,yes (WCC ELISE ID platform),NA,NA,NA,NA,NA,North America,NA,NA
