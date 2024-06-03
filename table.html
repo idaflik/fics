@@ -46,7 +46,13 @@
             margin: 0px;
             padding: 0px;
         }
-
+        .country-name {
+            width: 100%;
+            font-weight: bold;
+            margin: 10px 0 5px;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
 
 
     </style>
@@ -66,24 +72,26 @@
     
     let globalData; 
     
-    d3.csv("https://raw.githubusercontent.com/idaflik/data/master/systems_tables.csv")
+    d3.csv("https://raw.githubusercontent.com/idaflik/fics/main/output/systems_tables.csv")
     .then(function(data) {
 
         // Log the data
-        console.log(data);
+        //console.log(data);
 
         globalData = data;
 
         // Extract user_country values
+        const continents = data.map(d => d.continent).sort();
         const countries = data.map(d => d.user_country).sort();
 
         // Get unique user_country values
+        const uniqueContinents = [...new Set(continents)];
         const uniqueCountries = [...new Set(countries)];
 
         // Log the extracted user_country values
-        console.log(uniqueCountries);
+        //console.log(uniqueContinents);
 
-        createDropDown(uniqueCountries);
+        createDropDown(uniqueContinents);
 
         // when dropdown is updated, update all data
         d3.select("#dropdown").on("change", updateData);
@@ -136,27 +144,36 @@
 
     function updateData(){
         const curValue = d3.select("#dropdown").property("value");
-        console.log(curValue)
+        //console.log(curValue)
         
-        const filteredData = globalData.filter((d) => d.user_country == curValue)
+        const filteredData = globalData.filter((d) => d.continent == curValue)
 
-        console.log(filteredData)
+        //console.log(filteredData)
 
-        const container = d3.select("#container")
-            .selectAll(".data-div")
-            .data(filteredData, d => d.user_country);
+        const container = d3.select("#container");
+        
+        // Clear existing content
+        container.html('');
 
-        // Remove old elements
-        container.exit().remove();
+        // Group data by country
+        const dataByCountry = d3.groups(filteredData, d => d.user_country);
 
-        // Update existing elements
-        container.html(generateHTMLContent);
+        // Sort the groups alphabetically by country name
+        dataByCountry.sort((a, b) => d3.ascending(a[0], b[0]));
 
-        // Append new elements
-        container.enter()
-            .append("div")
-            .attr("class", "data-div")
-            .html(generateHTMLContent);
+        dataByCountry.forEach(([country, entries]) => {
+            // Add country name as a <p> element
+            container.append('p')
+                     .attr('class', 'country-name')
+                     .text(country);
+
+            // Add entries for the country
+            entries.forEach(entry => {
+                container.append('div')
+                         .attr('class', 'data-div')
+                         .html(generateHTMLContent(entry));
+            });
+        });
 
     }
 </script>
