@@ -14,13 +14,13 @@
 
             body {
                 font-family: sans-serif;
+                color: #364497;
             }
 
             table {
             border-collapse: collapse;
             width: 100%;
             font-size: 13px;
-            color: #364497;
             }
 
             thead tr {
@@ -80,6 +80,7 @@
     </style>
 </head>
 <body>
+    <h3>Donations</h3>
     <div class="table-container">
         <table class="data-table">
             <thead>
@@ -103,13 +104,25 @@
             const tableHeader = document.getElementById("table-header");
             const tableContent = document.getElementById("table-content");
 
+            const columnDisplayNames = {
+                "donors":"From",
+                "user_country": "to",
+                "systems": "system",
+                "donation_amount": "amount",
+                "date_of_agreement": "date of agreement",
+                "entry_into_operation": "start of system operation",
+                "end_of_operation": "end of operation",
+                // Add mappings for other column names as needed
+            };
+
             const createHeader = (data) => {
                 const keys = Object.keys(data[0]);
                 keys.forEach(key => {
                     const th = document.createElement("th");
                     const button = document.createElement("button");
+                    const displayName = columnDisplayNames[key] || key; // Use display name if available, otherwise use key
                     button.id = key;
-                    button.innerText = key.charAt(0).toUpperCase() + key.slice(1);
+                    button.innerText = displayName.charAt(0).toUpperCase() + displayName.slice(1); // Capitalize first letter
                     th.appendChild(button);
                     tableHeader.appendChild(th);
                 });
