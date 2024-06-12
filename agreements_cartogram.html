@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Globe Visualization</title>
     <script src="https://unpkg.com/d3"></script>
-    <script src="https://unpkg.com/globe.gl"></script>
+    <script src="https://unpkg.com/proj4@2.7.5/dist/proj4.js"></script>
 </head>
 <body>
     <script>
@@ -24,13 +24,36 @@
             .attr('width', width)
             .attr('height', height);
 
-        d3.json('https://raw.githubusercontent.com/idaflik/fics/main/output/agreements_cartogram.geojson').then(function(data) {
+        // Define the custom CRS (Coordinate Reference System) using proj4
+        proj4.defs('CUSTOM_CRS', '+proj=merc +lon_0=-80 +datum=WGS84 +units=m +no_defs');
+
+
+        d3.json('https://raw.githubusercontent.com/idaflik/fics/main/output/agreements_centroids.geojson').then(function(data) {
+            // Render the points as circles
             svg.append('g')
-                .selectAll('path')
+                .selectAll('circle')
                 .data(data.features)
-                .enter().append('path')
-                .attr('d', path)
+                .enter().append('circle')
+                .attr('cx', function(d) {
+                    // Transform the coordinates from the custom CRS to WGS84
+                    const [x, y] = proj4('CUSTOM_CRS', 'EPSG:4326', d.geometry.coordinates);
+                    // Project the transformed coordinates
+                    const [px, py] = projection([x, y]);
+                    return px;
+                })
+                .attr('cy', function(d) {
+                    // Transform the coordinates from the custom CRS to WGS84
+                    const [x, y] = proj4('CUSTOM_CRS', 'EPSG:4326', d.geometry.coordinates);
+                    // Project the transformed coordinates
+                    const [px, py] = projection([x, y]);
+                    return py;
+                })
+                .attr('r', function(d) {
+                    // Use the "n_agreements" property to set the radius
+                    return Math.sqrt(d.properties.n_agreements);
+                })
                 .attr('fill', 'steelblue')
+                .attr('opacity', 0.6)
                 .attr('stroke', 'white');
         });
     </script>
