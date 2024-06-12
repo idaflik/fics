@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globe Visualization</title>
+    <script src="https://unpkg.com/d3"></script>
+    <script src="https://unpkg.com/globe.gl"></script>
+</head>
+<body>
+    <script>
+        const width = 960;
+        const height = 600;
+
+        const projection = d3.geoMercator()
+            .center([0, 0])
+            .rotate([80, 0])
+            .scale(1000)
+            .translate([width / 2, height / 2]);
+
+        const path = d3.geoPath().projection(projection);
+
+        const svg = d3.select('body').append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        d3.json('https://raw.githubusercontent.com/idaflik/fics/main/output/agreements_cartogram.geojson').then(function(data) {
+            svg.append('g')
+                .selectAll('path')
+                .data(data.features)
+                .enter().append('path')
+                .attr('d', path)
+                .attr('fill', 'steelblue')
+                .attr('stroke', 'white');
+        });
+    </script>
+</body>
+</html>
