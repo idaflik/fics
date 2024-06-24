@@ -9,21 +9,31 @@
             font-family: sans-serif;
             margin: 0px;
             padding: 0px;
+            background-color: #f2f2f3;
+        }
+        h2{
+            position: absolute;
+            top: 0px; 
+            left: 15px;
+            margin: 20px;
+            z-index: 1000; /* Ensure buttons are above the globe visualization */
+            color:#364497;
         }
         #buttons {
-            /* position: absolute;
-            top: 10px; 
-            left: 10px;*/
+            position: absolute;
+            top: 40px; 
+            left: 10px;
             z-index: 1000; /* Ensure buttons are above the globe visualization */
             color:#364497;
             font-size: 16px;
-            margin: 20px 50px;
+            margin: 20px;
         }
         button{
             background: Transparent no-repeat;
+            background-color: #f2f2f3;
             border-radius:  9999999px;
             padding: 1px 8px;
-            margin: 1px 2px;
+            margin: 2px;
             border: 1px solid #364497;
             text-transform: uppercase;
             color: inherit;
@@ -41,25 +51,28 @@
             border: 2px solid #364497;
             margin: 0px 1px;
         }
+        p {
+            margin: 20px;
+            color: #364497;
+        }
         #tooltip {
             color: #364497;
             background-color: #f2f2f3;
             /* border: #364497 1px solid; */
             padding: 3px 5px;
         }
-        #container {
-            background-color: #f2f2f3;
-        }
     </style>
     <script src="https://unpkg.com/d3"></script>
     <script src="https://unpkg.com/globe.gl"></script>
 </head>
 <body>
-    <div id="buttons"></div>
+    <h2>Explore the different systems</h2>
     <div id = "container">
+        <div id="buttons"></div>
         <div id="globeViz"></div> 
+        <p>Aggregates such as Europol, Caricom etc not displayed on map. Please use the list below to check.</p>
     </div>
-    <p>Aggregates such as Europol, Caricom etc not displayed on map. Please use the list below to check.</p>
+    
 
     <script type="module">
         import * as THREE from 'https://unpkg.com/three/build/three.module.js';
@@ -128,8 +141,9 @@
 
              // Create the globe visualization
             world = Globe()
-                .width(1000)
-                .height(500)
+            // to do: make reponsive
+                .width(890)
+                .height(640)
                 .backgroundColor("#f2f2f3")
                 .globeMaterial(new THREE.MeshLambertMaterial({ color: '#f2f2f3' }))
                 // .showGlobe(false)
@@ -155,7 +169,7 @@
                     .polygonStrokeColor(d => d === hoverD ? '#364497' : '#36449700'))
             (document.getElementById('globeViz'));
                       
-            world.pointOfView({ altitude: 1.5 });
+            world.pointOfView({ altitude: 1.8});
             
             const directionalLight = world.lights().find(light => light.type === 'DirectionalLight');
             directionalLight.intensity = 0.01
