@@ -9,6 +9,7 @@
         body {
             font-family: sans-serif;
             color: #364497;
+            background-color: #f2f2f3;
         }
         .tooltip {
             position: absolute;
@@ -28,9 +29,10 @@
     </style>
 </head>
 <body>
+    <h2>US bilateral agreements</h2>
     <script>
         const width = 960;
-        const height = 600;
+        const height = 500;
         const customCentralMeridian = 80; // Custom central meridian
 
         // Define tooltip
@@ -42,7 +44,7 @@
         const projection = d3.geoMercator()
             .center([0, 0])  // Center remains at 0,0
             .scale(150)  // Adjust scale to fit your data
-            .translate([width / 2, height / 2]);
+            .translate([width / 2, height / 1.5]);
 
         // Create the SVG container
         const svg = d3.select('body').append('svg')
@@ -88,7 +90,7 @@
                         const [x2, y2] = projection(d.geometry.coordinates[1]);
                         return y2;
                     })
-                    .attr('stroke', '#e6e6e6')
+                    .attr('stroke', 'white')
                     .attr('stroke-width', function(d) {
                         // Use the "n_agreements" property to set the stroke width
                         return d.properties.n_agreements * 3; // Adjust scaleFactor as needed
@@ -113,14 +115,14 @@
                     })
                     .attr('fill', function(d) {
                         // Use the "name" property to determine fill color
-                        return d.properties.name === "United States" ? "white" : "#364497";
+                        return d.properties.name === "United States" ? "#f2f2f3" : "#364497";
                     })
-                    .attr('stroke', 'white')
+                    .attr('stroke', '#f2f2f3')
                     .on('mouseover', function(event, d) {
                         // Show tooltip for non-"United States" circles
                         if (d.properties.name !== "United States") {
                             tooltip.style('opacity', 1);
-                            tooltip.html('Name: ' + d.properties.name + '<br>' + 'Agreements: ' + d.properties.n_agreements)
+                            tooltip.html("The US has <br> <b>" +  d.properties.n_agreements + ' agreements </b> <br>' +'with  <b>' + d.properties.name + "</b>")
                                 .style('left', (event.pageX + 10) + 'px') // Use event.pageX and event.pageY
                                 .style('top', (event.pageY - 28) + 'px');
                         }
@@ -129,7 +131,7 @@
                         // Show tooltip for non-"United States" circles
                         if (d.properties.name !== "United States") {
                             tooltip.style('opacity', 1);
-                            tooltip.html('Name: ' + d.properties.name + '<br>' + 'Agreements: ' + d.properties.n_agreements)
+                            tooltip.html("The US has <br> <b>" +  d.properties.n_agreements + ' agreements </b> <br>' +'with  <b>' + d.properties.name + "</b>")
                                 .style('left', (event.pageX + 10) + 'px') // Use event.pageX and event.pageY
                                 .style('top', (event.pageY - 28) + 'px');
                         }

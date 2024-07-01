@@ -39,6 +39,11 @@
             width: calc(100% - 100px);
             height: auto;
         }
+        .gridsquares{
+            width: 500px;
+            float: left;
+            margin: 0px 40px 40px 0px;
+        }
         .square{
             width: 500px;
             float: right;
@@ -91,18 +96,22 @@
         <p>Hipster ipsum tattooed brunch I'm baby. Fit loko swag pinterest letterpress meditation single-origin. Bodega health bottle man helvetica messenger synth mood booth narwhal. Letterpress bag yes dsa single-origin artisan umami ethical. Ipsum heirloom fingerstache palo on I'm xoxo ramps. Denim praxis succulents cloud knausgaard everyday 3-moon umami. Toast cloud tote 8-bit charcoal.</p>
         <p>Dreamcatcher chips literally level dreamcatcher bottle. Intelligentsia cray belly photo tumeric authentic palo cliche beer readymade. Sold chillwave thundercats viral hashtag tacos jianbing booth bottle. Scenester brooklyn fingerstache ugh ugh palo portland next haven't kogi. Probably banh mlkshk selvage hell cardigan. Retro art juice mumblecore booth authentic pour-over craft.</p>
        <h2>Donations (combined for all systems: PISCES, MIDAS, etc.)</h2>
-        <!-- <img src = "plots/donations.png"/> -->
-        <img src = "plots/donors_edit.png"/>
+       <div style = "width: 1200px">
+        <img class = "gridsquares" src = "plots/donations_small_1.png"/>
+        <img class = "gridsquares" src = "plots/donations_small_2.png"/>
+        <img class = "gridsquares" src = "plots/donations_small_3.png"/>
+        <img class = "gridsquares" src = "plots/donations_small_4.png"/>
+       </div>
         <p>Click on a column header to sort table</p>
         <iframe class = "table" src = "donors.html"></iframe>
         <p>Dreamcatcher chips literally level dreamcatcher bottle. Intelligentsia cray belly photo tumeric authentic palo cliche beer readymade. Sold chillwave thundercats viral hashtag tacos jianbing booth bottle. Scenester brooklyn fingerstache ugh ugh palo portland next haven't kogi. Probably banh mlkshk selvage hell cardigan. Retro art juice mumblecore booth authentic pour-over craft.</p>
         <p>Hipster ipsum tattooed brunch I'm baby. Fit loko swag pinterest letterpress meditation single-origin. Bodega health bottle man helvetica messenger synth mood booth narwhal. Letterpress bag yes dsa single-origin artisan umami ethical. Ipsum heirloom fingerstache palo on I'm xoxo ramps. Denim praxis succulents cloud knausgaard everyday 3-moon umami. Toast cloud tote 8-bit charcoal.</p>
         <h2>Which systems are connected per country</h2>
-        <iframe style = "height: 2500px; background-color: #f2f2f3" src = "plots/facets_connections.svg"></iframe>
-        <iframe style = "height: 2000px; background-color: #f2f2f3" src = "plots/facets_connections_arc.svg"></iframe>
-        <h3>US agreements (incomplete data)</h3>
+        <iframe style = "height: 2500px" src = "plots/connections_1_1.png"></iframe>
+        <iframe style="height:560px; overflow: hidden" scrolling="no" src = "agreements_cartogram.html"></iframe>
+        <p>(incomplete data)</p>
         <p>positions of circles are based on abstract geographical location, length of line is not representing any data (so actually not very good datavis practice but bloomberg did it too ;))</p>
-        <iframe src = "agreements_cartogram.html"></iframe>
+       
     </div>
 </body>
 </html>
