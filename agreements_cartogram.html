@@ -11,13 +11,22 @@
             color: #364497;
             background-color: #f2f2f3;
         }
+        .bold{
+            font-weight: bold;
+        }
+        .bold > *{
+            font-weight: normal;
+        }
         .tooltip {
             position: absolute;
             color: #364497;
+            border: 1px solid #364497;
+            border-radius: 3px;
             background-color: #f2f2f3;
             pointer-events: none; /* Ensure tooltip doesn't block mouse events */
             /* border: #364497 1px solid; */
             padding: 3px 5px;
+            width: 105px;
         }
         svg {
             max-width: 100%;
@@ -25,6 +34,9 @@
         }
         text{
             fill: #364497;
+        }
+        h2{
+            margin-left: 12px;
         }
     </style>
 </head>
@@ -119,20 +131,27 @@
                     })
                     .attr('stroke', '#f2f2f3')
                     .on('mouseover', function(event, d) {
+                        var tooltipX = event.pageX > window.innerWidth - 140 
+                            ? event.pageX - 120
+                            : event.pageX + 10;
                         // Show tooltip for non-"United States" circles
                         if (d.properties.name !== "United States") {
                             tooltip.style('opacity', 1);
                             tooltip.html("The US has <br> <b>" +  d.properties.n_agreements + ' agreements </b> <br>' +'with  <b>' + d.properties.name + "</b>")
-                                .style('left', (event.pageX + 10) + 'px') // Use event.pageX and event.pageY
+                                .style("left", tooltipX + "px") // Use event.pageX and event.pageY
                                 .style('top', (event.pageY - 28) + 'px');
                         }
                     })
                     .on('mousemove', function(event, d) {
+                        var tooltipX =
+                        event.pageX > window.innerWidth - 140 
+                            ? event.pageX - 120
+                            : event.pageX + 10;
                         // Show tooltip for non-"United States" circles
                         if (d.properties.name !== "United States") {
                             tooltip.style('opacity', 1);
                             tooltip.html("The US has <br> <b>" +  d.properties.n_agreements + ' agreements </b> <br>' +'with  <b>' + d.properties.name + "</b>")
-                                .style('left', (event.pageX + 10) + 'px') // Use event.pageX and event.pageY
+                                .style("left", tooltipX + "px")
                                 .style('top', (event.pageY - 28) + 'px');
                         }
                     })
@@ -153,10 +172,12 @@
                         .append('tspan')
                         .attr('x', usCentroid[0])
                         .attr('dy', '-0.5em') // Move up by half the font size
+                        .attr('class', 'bold')
                         .text('United States')
                         .append('tspan')
                         .attr('x', usCentroid[0])
                         .attr('dy', '1em') // Move down by the font size
+                        .attr("class", null)
                         .text(usCircle.properties.n_agreements);
             });
         });

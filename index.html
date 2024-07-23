@@ -55,6 +55,28 @@
         iframe svg {
             transform: scale(0.7);
         }
+        .flexcontainer{
+            width: 1200px
+        }
+        @media only screen and (max-width: 699px) {
+            #sidebar{
+                width: 0px;
+                height: 0px;
+            }
+            /* iframe{
+               
+            } */
+            img, .flexcontainer{
+                width: 100% !important;
+                margin: 0px !important;
+            }
+            #container{
+                max-width: 100%
+            }
+            #container > * {
+                margin: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -96,7 +118,7 @@
         <p>Hipster ipsum tattooed brunch I'm baby. Fit loko swag pinterest letterpress meditation single-origin. Bodega health bottle man helvetica messenger synth mood booth narwhal. Letterpress bag yes dsa single-origin artisan umami ethical. Ipsum heirloom fingerstache palo on I'm xoxo ramps. Denim praxis succulents cloud knausgaard everyday 3-moon umami. Toast cloud tote 8-bit charcoal.</p>
         <p>Dreamcatcher chips literally level dreamcatcher bottle. Intelligentsia cray belly photo tumeric authentic palo cliche beer readymade. Sold chillwave thundercats viral hashtag tacos jianbing booth bottle. Scenester brooklyn fingerstache ugh ugh palo portland next haven't kogi. Probably banh mlkshk selvage hell cardigan. Retro art juice mumblecore booth authentic pour-over craft.</p>
        <h2>Donations (combined for all systems: PISCES, MIDAS, etc.)</h2>
-       <div style = "width: 1200px">
+       <div class = "flexcontainer">
         <img class = "gridsquares" src = "plots/donations_small_1.png"/>
         <img class = "gridsquares" src = "plots/donations_small_2.png"/>
         <img class = "gridsquares" src = "plots/donations_small_3.png"/>
