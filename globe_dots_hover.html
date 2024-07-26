@@ -63,6 +63,21 @@
             border: 1px solid #364497;
             border-radius: 3px;
         }
+        #globeViz{
+            width: 100%;
+        }
+        .wrap > p {
+            position: absolute;
+            bottom: 1rem;
+        }
+        @media only screen and (max-width: 699px) {
+            h2{
+                position: static;
+            }
+            #buttons{
+                position:static;
+            }
+        }
     </style>
     <script src="https://unpkg.com/d3"></script>
     <script src="https://unpkg.com/globe.gl"></script>
@@ -72,7 +87,9 @@
     <div id = "container">
         <div id="buttons"></div>
         <div id="globeViz"></div> 
-        <p>Aggregates such as Europol, Caricom etc not displayed on map. Please use the list below to check.</p>
+        <div class="wrap">
+            <p>Aggregates such as Europol, Caricom etc not displayed on map. Please use the list below to check.</p>
+        </div>
     </div>
     
 
@@ -144,8 +161,8 @@
              // Create the globe visualization
             world = Globe()
             // to do: make reponsive
-                .width(890)
-                .height(640)
+                .width(window.innerWidth)
+                .height(window.innerWidth / 3 * 2)
                 .backgroundColor("#f2f2f3")
                 .globeMaterial(new THREE.MeshLambertMaterial({ color: '#f2f2f3' }))
                 // .showGlobe(false)
