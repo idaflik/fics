@@ -13,8 +13,13 @@
             } */
 
             body {
+                margin: 0px;
                 font-family: sans-serif;
                 color: #364497;
+            }
+
+            h3 {
+                margin-left: 10px;
             }
 
             table {
@@ -73,9 +78,14 @@
             }
 
             td {
-            padding: 0.5rem 1rem;
-            text-align: left;
+                padding: 0.5rem 1rem;
+                text-align: left;
             }
+            @media only screen and (max-width: 699px) {
+            td, th button {
+                padding: 0.5rem;
+            }
+        }
 
     </style>
 </head>
@@ -105,13 +115,13 @@
             const tableContent = document.getElementById("table-content");
 
             const columnDisplayNames = {
-                "donors":"From",
-                "user_country": "to",
-                "systems": "system",
-                "donation_amount": "amount",
-                "date_of_agreement": "date of agreement",
-                "entry_into_operation": "start of system operation",
-                "end_of_operation": "end of operation",
+                "donors" : "From",
+                "user_country" : "to",
+                "systems" : "system",
+                "donation_amount" : "amount",
+                "date_of_agreement" : "date of agreement",
+                "entry_into_operation" : "start of system operation",
+                "end_of_operation" : "end of operation",
                 // Add mappings for other column names as needed
             };
 
