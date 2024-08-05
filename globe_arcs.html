@@ -103,10 +103,10 @@
 
         // Fetch the GeoJSON data and create buttons when the page loads
         // this file works: fetch('https://raw.githubusercontent.com/idaflik/data/master/systems_hex_max.geojson')
-        fetch('https://facqberlin.codeberg.page/german-colonies/current_borders.geojson')
+        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/coastline.geojson')
         .then(res => res.json())
         .then(polygons => {
-            polygonData = polygons; 
+            let polygonData = polygons; 
 
             d3.csv('https://raw.githubusercontent.com/idaflik/fics/main/output/agreements_centroids.csv',
                 function(d) {
@@ -137,7 +137,7 @@
                         .atmosphereColor("#b6c1e3")
                         // .showAtmosphere(false)
                         // .atmosphereAltitude(0.2)
-                        .polygonsData(polygonData)
+                        .polygonsData(polygonData.features)
                         .arcsData(countriesData)
                         .arcColor(() => "#364497")
                         .arcAltitudeAutoScale(d => arcScale(d.n))
