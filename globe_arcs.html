@@ -103,7 +103,7 @@
 
         // Fetch the GeoJSON data and create buttons when the page loads
         // this file works: fetch('https://raw.githubusercontent.com/idaflik/data/master/systems_hex_max.geojson')
-        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/coastline.geojson')
+        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/coastline_rewound.geojson')
         .then(res => res.json())
         .then(polygons => {
             let polygonData = polygons; 
