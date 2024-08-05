@@ -176,8 +176,6 @@
             (document.getElementById('globeViz'));
                       
             world.pointOfView({ altitude: 1.8});
-
-            console.log(world.scene())
             
             const directionalLight = world.lights().find(light => light.type === 'DirectionalLight');
             directionalLight.intensity = 0.01
