@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globe Visualization</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0px;
+            padding: 0px;
+            background-color: #f2f2f3;
+        }
+        h2{
+            position: absolute;
+            top: 0px; 
+            left: 15px;
+            margin: 20px;
+            z-index: 1000; /* Ensure buttons are above the globe visualization */
+            color:#364497;
+        }
+        #buttons {
+            position: absolute;
+            top: 40px; 
+            left: 10px;
+            z-index: 1000; /* Ensure buttons are above the globe visualization */
+            color:#364497;
+            font-size: 16px;
+            margin: 20px;
+        }
+        button{
+            background: Transparent no-repeat;
+            background-color: #f2f2f3;
+            border-radius:  9999999px;
+            padding: 1px 8px;
+            margin: 2px;
+            border: 1px solid #364497;
+            text-transform: uppercase;
+            color: inherit;
+            font-size: inherit;
+        }
+        .active {
+            /* text-decoration: underline; */
+            background-color: #364497;
+            color: white;
+        }
+        button:hover {
+            /* text-decoration: underline; */
+            /* background-color: #b6c1e3;
+            color: white; */
+            border: 2px solid #364497;
+            margin: 0px 1px;
+        }
+        p {
+            margin: 20px;
+            color: #364497;
+        }
+        #tooltip {
+            color: #364497;
+            background-color: #f2f2f3;
+            /* border: #364497 1px solid; */
+            padding: 3px 5px;
+            border: 1px solid #364497;
+            border-radius: 3px;
+        }
+        #globeViz{
+            width: 100%;
+        }
+        .wrap > p {
+            position: absolute;
+            bottom: 1rem;
+        }
+        @media only screen and (max-width: 699px) {
+            h2{
+                position: static;
+            }
+            #buttons{
+                position:static;
+            }
+        }
+    </style>
+    <script src="https://unpkg.com/d3"></script>
+    <script src="https://unpkg.com/globe.gl"></script>
+</head>
+<body>
+    <h2>Explore the different systems</h2>
+    <div id = "container">
+        <div id="buttons"></div>
+        <div id="globeViz"></div> 
+        <div class="wrap">
+            <p>Aggregates such as Europol, Caricom etc not displayed on map. Please use the list below to check.</p>
+        </div>
+    </div>
+    
+
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+        let countriesData; // Global variable to store GeoJSON data
+        let world; // Global variable to store globe instance
+        let selectedProperty; // Global variable to store the currently selected property
+        const alphaScale = d3.scaleOrdinal()
+                .range(["#364497","#364497", "#364497","#36449740"]) //'#b6c1e3'
+                .domain(["yes", "uncertain", "replaced", "no"]);
+
+        // Function to update the colors of polygons based on the selected property
+        function updateColors(property, button) {
+
+            world.polygonCapColor(feat => alphaScale(feat.properties[property]));
+
+            // Update the selected property for tooltip
+            selectedProperty = property;
+
+            // Update the tooltip content
+            world.polygonLabel(({ properties: d }) => `
+            <div id = "tooltip">
+                <b>${d.name} (${d.iso_a2}):</b> <br />
+                ${selectedProperty} Status: <i>${d[selectedProperty]}</i>
+                </div>
+            `);
+
+            // Remove 'active' class from all buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Add 'active' class to the clicked button
+            button.classList.add('active');
+        }
+
+        // Function to create buttons dynamically based on property names
+        function createButtons(propertyNames) {
+            const buttonsContainer = document.getElementById('buttons');
+            propertyNames.forEach(property => {
+                const button = document.createElement('button');
+                button.textContent = property;
+                button.addEventListener('click', () => updateColors(property, button));
+                buttonsContainer.appendChild(button);
+            });
+        }
+
+
+        // Fetch the GeoJSON data and create buttons when the page loads
+        // this file works: fetch('https://raw.githubusercontent.com/idaflik/data/master/systems_hex_max.geojson')
+        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/hex_aggregate_data_dateline_rewound.geojson')
+        .then(res => res.json())
+        .then(countries => {
+            countriesData = countries; // Store the GeoJSON data globally
+            console.log(countriesData)
+            const propertyNames = Object.keys(countries.features[0].properties);
+            // Remove 'type' and 'geometry' properties from button creation
+            const excludedProperties = ["name", "name_long", "iso_a2", "iso_a3", "pop_est", "Status"];
+            const filteredPropertyNames = propertyNames.filter(property => !excludedProperties.includes(property) && property !== 'type' && property !== 'geometry');
+            createButtons(filteredPropertyNames);
+
+             // Create the globe visualization
+            world = Globe()
+            // to do: make reponsive
+                .width(window.innerWidth)
+                .height(window.innerWidth / 3 * 2)
+                .backgroundColor("#f2f2f3")
+                .globeMaterial(new THREE.MeshLambertMaterial({ color: '#dedde9' }))
+                // .showGlobe(false)
+                .lineHoverPrecision(0)
+                .showGraticules(false)
+                // .showAtmosphere(false)
+                .atmosphereColor("#b6c1e3")
+                .showAtmosphere(false)
+                .polygonsTransitionDuration(0)
+                // .atmosphereAltitude(0.2)
+                .polygonsData(countriesData.features)
+                .polygonAltitude(0.007)
+                .polygonSideColor(() => 'rgba(0,0,0,0)')
+                .polygonStrokeColor(() => '#dedde9')
+                .onPolygonHover(hoverD => world
+                    .polygonStrokeColor(d => d === hoverD ? '#f2f2f3' : '#dedde9')
+                    .polygonAltitude(d => d === hoverD ?0.01 : 0.007))
+            (document.getElementById('globeViz'));
+                      
+            world.pointOfView({ altitude: 1.8});
+
+            console.log(world.scene())
+            
+            const directionalLight = world.lights().find(light => light.type === 'DirectionalLight');
+            directionalLight.intensity = 0.01
+
+            const ambientLight = world.lights().find(light => light.type === 'AmbientLight');
+            ambientLight.intensity = 5.2
+            
+            // Automatically press the first button
+            const firstButton = document.querySelector('button');
+            updateColors(filteredPropertyNames[0], firstButton);
+        });
+    </script>
+</body>
+</html>
