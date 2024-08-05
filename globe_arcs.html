@@ -12,12 +12,13 @@
             background-color: #f2f2f3;
         }
         h2{
-            position: absolute;
+            /* position: absolute;
             top: 0px; 
-            left: 15px;
-            margin: 20px;
+            margin: 20px; */
             z-index: 1000; /* Ensure buttons are above the globe visualization */
             color:#364497;
+            margin: 20px;
+            margin-left: 35px;
         }
         #buttons {
             position: absolute;
@@ -83,13 +84,9 @@
     <script src="https://unpkg.com/globe.gl"></script>
 </head>
 <body>
-    <h2>Explore the different systems</h2>
+    <h2>US bilateral data sharing agreements</h2>
     <div id = "container">
-        <div id="buttons"></div>
         <div id="globeViz"></div> 
-        <div class="wrap">
-            <p>Aggregates such as Europol, Caricom etc not displayed on map. Please use the list below to check.</p>
-        </div>
     </div>
     
 
@@ -103,7 +100,7 @@
 
         // Fetch the GeoJSON data and create buttons when the page loads
         // this file works: fetch('https://raw.githubusercontent.com/idaflik/data/master/systems_hex_max.geojson')
-        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/coastline_rewound.geojson')
+        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/coastline_interrupted.geojson')
         .then(res => res.json())
         .then(polygons => {
             let polygonData = polygons; 
@@ -111,6 +108,7 @@
             d3.csv('https://raw.githubusercontent.com/idaflik/fics/main/output/agreements_centroids.csv',
                 function(d) {
                     return {
+                        ...d,  // retain all original columns
                         startLng: +d.startLng,
                         startLat: +d.startLat,
                         endLat: +d.endLat,
@@ -120,12 +118,27 @@
                 )
                 .then(countries => {
                     countriesData = countries;
-                    console.log(countriesData)
+
+                    console.log(countriesData);
+
+                    const maxNPerLocation = {};
+
+                    countries.forEach(function(row) {
+                        const key = `${row.endCountry}_${row.endLng}_${row.endLat}`;
+                        if (!maxNPerLocation[key] || row.n > maxNPerLocation[key].n) {
+                            maxNPerLocation[key] = { ...row };
+                        }
+                    });
+
+                    // Convert the dictionary back to an array
+                    const dotsData = Object.values(maxNPerLocation);
+
+                    console.log(dotsData);
 
                     // Create the globe visualization
                     world = Globe()
                         .width(window.innerWidth)
-                        .height(window.innerWidth / 3 * 2)
+                        .height(window.innerWidth / 3 * 1.8)
                         .backgroundColor("#f2f2f3")
                         // .globeMaterial(new THREE.MeshLambertMaterial({ color: '#dedde9' }))
                         // .showGlobe(false)
@@ -138,13 +151,30 @@
                         // .showAtmosphere(false)
                         // .atmosphereAltitude(0.2)
                         .polygonsData(polygonData.features)
+                        .polygonCapColor(() => "#f2f2f3")
+                        .polygonStrokeColor(() => "#364497")
+                        .polygonSideColor(() => "#36449700")
+                        .polygonAltitude(0.005)
                         .arcsData(countriesData)
                         .arcColor(() => "#364497")
                         .arcAltitudeAutoScale(d => arcScale(d.n))
+                        .labelsData(dotsData)
+                        .labelLat(d => d.endLat)
+                        .labelLng(d => d.endLng)
+                        .labelDotRadius(d => Math.sqrt(d.n))
+                        .labelText(() => "")
+                        .labelAltitude(0.007)
+                        .labelColor(() => "#36449760")
+                        .labelLabel(d => `
+                            <div id = "tooltip">
+                                <b>${d.endCountry}:</b> <br />
+                                ${d.n} agreements with the US
+                                </div>
+                            `)
                         
                     (document.getElementById('globeViz'));
                             
-                    world.pointOfView({ altitude: 1.8});
+                    world.pointOfView({ lat: 30, lng : -60, altitude: 1.9});
                     
                     const directionalLight = world.lights().find(light => light.type === 'DirectionalLight');
                     directionalLight.intensity = 0.01
