@@ -31,7 +31,7 @@
             border: none;
         }
         .combo{
-            height: 230vh;
+            height: 1800px;
         }
         .textwidth {
             width: calc(100% - 100px);
@@ -68,13 +68,25 @@
             height:560px; 
             overflow: hidden
         }
+        .mobile_only{
+                display:none;
+            }
         @media only screen and (max-width: 699px) {
+            .desktop_only{
+                display:none
+            }
+            .mobile_only{
+                display:block
+            }
             #sidebar{
                 width: 0px;
                 height: 0px;
             }
             iframe{
                width: 100%;
+            }
+            .combo{
+                height: 2100px;
             }
             img, .flexcontainer{
                 width: 100% !important;
@@ -151,7 +163,8 @@
         <p>Dreamcatcher chips literally level dreamcatcher bottle. Intelligentsia cray belly photo tumeric authentic palo cliche beer readymade. Sold chillwave thundercats viral hashtag tacos jianbing booth bottle. Scenester brooklyn fingerstache ugh ugh palo portland next haven't kogi. Probably banh mlkshk selvage hell cardigan. Retro art juice mumblecore booth authentic pour-over craft.</p>
         <p>Hipster ipsum tattooed brunch I'm baby. Fit loko swag pinterest letterpress meditation single-origin. Bodega health bottle man helvetica messenger synth mood booth narwhal. Letterpress bag yes dsa single-origin artisan umami ethical. Ipsum heirloom fingerstache palo on I'm xoxo ramps. Denim praxis succulents cloud knausgaard everyday 3-moon umami. Toast cloud tote 8-bit charcoal.</p>
         <h2>Which systems are connected per country</h2>
-        <img src = "plots/connections_1_1.png"></img>
+        <img class="desktop_only" src = "plots/connections_1_1.png"></img>
+        <img class="mobile_only" src = "plots/connections_mobile.png"></img>
         <!-- <iframe class = "agreements" scrolling="no" src = "agreements_cartogram.html"></iframe>
         <p>(incomplete data)</p>
         <p>positions of circles are based on abstract geographical location, length of line is not representing any data (so actually not very good datavis practice but bloomberg did it too ;))</p>

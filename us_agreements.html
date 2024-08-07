@@ -30,6 +30,8 @@
             color:#364497;
             margin: 20px;
             margin-left: 35px;
+            margin-top: 0px;
+            padding-top: 20px;
         }
         #buttons {
             position: absolute;
@@ -106,7 +108,7 @@
             background: Transparent no-repeat;
             border-radius:  9999999px;
             padding: 2px 8px;
-            margin: 0px 0px 20px;
+            margin: 0px;
             border: 1px solid #364497;
             color: inherit;
             font-size: inherit;
@@ -117,10 +119,10 @@
             margin: 0px;
             padding: 0px;
         }
-        .country-name {
+        #tablewrapper .country-name {
             width: 100%;
             font-weight: bold;
-            margin: 10px 0 5px;
+            margin: 25px 0 5px;
             padding: 0 10px;
             box-sizing: border-box;
         }
@@ -131,7 +133,7 @@
             #buttons{
                 position:static;
             }
-            body > * {
+            #tablewrapper > * {
                 margin-left: 20px;
                 margin-right: 20px;
             }
@@ -342,6 +344,8 @@
             if (d["Other"] !== "NA") {
                 htmlContent += `<p><b>Other information</b>: ${d["Other"]}</p>`;
             }
+            
+            htmlContent += `<p><b>Find the original agreements (pdf) <a href="https://statewcloud.gn.apc.org/index.php/s/j2P6o6ejZk9QwwG" target = "_blank">here</a></b></p>`;
     
             return htmlContent;
         }
