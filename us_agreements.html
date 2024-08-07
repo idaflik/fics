@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globe Visualization</title>
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: sans-serif;
+            margin: 0px;
+            color: #364497;
+            padding: 0px;
+        }
+        #tablewrapper{
+            margin-top: 20px;
+        }
+        #tablewrapper p {
+            font-family: sans-serif;
+            font-size: 13px;
+            margin: 0.2rem 0px
+        }
+        h2{
+            /* position: absolute;
+            top: 0px; 
+            margin: 20px; */
+            z-index: 1000; /* Ensure buttons are above the globe visualization */
+            color:#364497;
+            margin: 20px;
+            margin-left: 35px;
+        }
+        #buttons {
+            position: absolute;
+            top: 40px; 
+            left: 10px;
+            z-index: 1000; /* Ensure buttons are above the globe visualization */
+            color:#364497;
+            font-size: 16px;
+            margin: 20px;
+        }
+        button{
+            background: Transparent no-repeat;
+            background-color: #f2f2f3;
+            border-radius:  9999999px;
+            padding: 1px 8px;
+            margin: 2px;
+            border: 1px solid #364497;
+            text-transform: uppercase;
+            color: inherit;
+            font-size: inherit;
+        }
+        .active {
+            /* text-decoration: underline; */
+            background-color: #364497;
+            color: white;
+        }
+        button:hover {
+            /* text-decoration: underline; */
+            /* background-color: #b6c1e3;
+            color: white; */
+            border: 2px solid #364497;
+            margin: 0px 1px;
+        }
+        p {
+            margin: 20px;
+            color: #364497;
+        }
+        #tooltip {
+            color: #364497;
+            background-color: #f2f2f3;
+            /* border: #364497 1px solid; */
+            padding: 3px 5px;
+            border: 1px solid #364497;
+            border-radius: 3px;
+        }
+        #globewrapper{
+            background-color: #f2f2f3;
+        }
+        #globeViz{
+            width: 100%;
+        }
+        .wrap > p {
+            position: absolute;
+            bottom: 1rem;
+        }
+        #container {
+            flex-direction: row;
+            display: flex; /* or inline-flex */
+            flex-wrap: wrap;
+        }
+        #container > div {
+            margin: 3px;
+            width: 600px;
+            padding: 5px 10px;
+            /* background-color: #f2f2f3; */
+            border: 1px solid #364497;
+            border-radius: 13px;
+            /* box-shadow: 0px 0px 10px #ddd; */
+        }
+        .title {
+            font-weight: bold;
+        }
+        select {
+            background: Transparent no-repeat;
+            border-radius:  9999999px;
+            padding: 2px 8px;
+            margin: 0px 0px 20px;
+            border: 1px solid #364497;
+            color: inherit;
+            font-size: inherit;
+        }
+
+        option {
+            background-color: white;
+            margin: 0px;
+            padding: 0px;
+        }
+        .country-name {
+            width: 100%;
+            font-weight: bold;
+            margin: 10px 0 5px;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        @media only screen and (max-width: 699px) {
+            h2{
+                position: static;
+            }
+            #buttons{
+                position:static;
+            }
+            body > * {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            #container > div {
+            width: 100%;
+        }
+        }
+    </style>
+    <script src="https://unpkg.com/d3"></script>
+    <script src="https://unpkg.com/globe.gl"></script>
+</head>
+<body>
+    <div id = "globewrapper">
+        <h2>US bilateral data sharing agreements</h2>
+        <div id="globeViz"></div> 
+    </div>
+    <div id = "tablewrapper">
+        <div>Select region: <select id="dropdown">
+        </select></div>
+        <div id = "table">
+            <div id = "container">
+            </div>
+        </div>
+    </div>
+    
+
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+        let countriesData; // Global variable to store GeoJSON data
+        let world; // Global variable to store globe instance
+        const arcScale = d3.scaleLinear()
+                .range([0.3,0.5]) //'#b6c1e3'
+                .domain([1,4]);
+
+        // Fetch the GeoJSON data and create buttons when the page loads
+        // this file works: fetch('https://raw.githubusercontent.com/idaflik/data/master/systems_hex_max.geojson')
+        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/coastline_interrupted.geojson')
+        .then(res => res.json())
+        .then(polygons => {
+            let polygonData = polygons; 
+
+            d3.csv('https://raw.githubusercontent.com/idaflik/fics/main/output/agreements_centroids.csv',
+                function(d) {
+                    return {
+                        ...d,  // retain all original columns
+                        startLng: +d.startLng,
+                        startLat: +d.startLat,
+                        endLat: +d.endLat,
+                        endLng: +d.endLng,
+                        n: +d.n
+                    }}
+                )
+                .then(countries => {
+                    countriesData = countries;
+
+                    // console.log(countriesData);
+
+                    const maxNPerLocation = {};
+
+                    countries.forEach(function(row) {
+                        const key = `${row.endCountry}_${row.endLng}_${row.endLat}`;
+                        if (!maxNPerLocation[key] || row.n > maxNPerLocation[key].n) {
+                            maxNPerLocation[key] = { ...row };
+                        }
+                    });
+
+                    // Convert the dictionary back to an array
+                    const dotsData = Object.values(maxNPerLocation);
+
+                    // console.log(dotsData);
+
+                    // Create the globe visualization
+                    world = Globe()
+                        .width(window.innerWidth)
+                        .height(window.innerWidth / 3 * 1.8)
+                        .backgroundColor("#f2f2f3")
+                        // .globeMaterial(new THREE.MeshLambertMaterial({ color: '#dedde9' }))
+                        // .showGlobe(false)
+                        // .globeImageUrl("https://unpkg.com/three-globe/example/img/earth-night.jpg")
+                        .globeMaterial(new THREE.MeshLambertMaterial({ color: '#f2f2f3' }))
+                        // .lineHoverPrecision(0)
+                        .showGraticules(false)
+                        // .showAtmosphere(false)
+                        .atmosphereColor("#b6c1e3")
+                        // .showAtmosphere(false)
+                        // .atmosphereAltitude(0.2)
+                        .polygonsData(polygonData.features)
+                        .polygonCapColor(() => "#f2f2f3")
+                        .polygonStrokeColor(() => "#364497")
+                        .polygonSideColor(() => "#36449700")
+                        .polygonAltitude(0.005)
+                        .arcsData(countriesData)
+                        .arcColor(() => "#364497")
+                        .arcAltitudeAutoScale(d => arcScale(d.n))
+                        .labelsData(dotsData)
+                        .labelLat(d => d.endLat)
+                        .labelLng(d => d.endLng)
+                        .labelDotRadius(d => Math.sqrt(d.n))
+                        .labelText(() => "")
+                        .labelAltitude(0.007)
+                        .labelColor(() => "#36449760")
+                        .labelLabel(d => `
+                            <div id = "tooltip">
+                                <b>${d.endCountry}:</b> <br />
+                                ${d.n} ${d.n === 1 ? 'agreement' : 'agreements'} with the US
+                                </div>
+                            `)
+                        .onLabelClick((label, event) => {
+                            let element = document.getElementById("dropdown");
+                                element.value = label.endCountry;
+                                var event = new Event('change');
+                                element.dispatchEvent(event);
+                            document.getElementById("tablewrapper").scrollIntoView();
+                        })
+                        .onLabelHover(hoverD => world
+                            .labelColor(d => d === hoverD ? '#364497' : '#36449760')
+                        )
+                        
+                    (document.getElementById('globeViz'));
+                            
+                    world.pointOfView({ lat: 30, lng : -60, altitude: 1.9});
+                    
+                    const directionalLight = world.lights().find(light => light.type === 'DirectionalLight');
+                    directionalLight.intensity = 0.01
+
+                    const ambientLight = world.lights().find(light => light.type === 'AmbientLight');
+                    ambientLight.intensity = 5.2
+                    
+                });
+            
+        })
+    </script>
+    <script> 
+    
+        let globalData; 
+        
+        d3.csv("https://raw.githubusercontent.com/idaflik/fics/main/output/agreements_centroids.csv")
+        .then(function(data) {
+    
+            // Log the data
+            //console.log(data);
+    
+            globalData = data;
+    
+            // Extract user_country values
+            const countries = data.map(d => d.endCountry).sort();
+            const agreements = data.map(d => d.Title).sort();
+            console.log(data)
+    
+            // Get unique user_country values
+            const uniqueCountries = [...new Set(countries)];
+            const uniqueAgreements = [...new Set(agreements)];
+    
+            // Log the extracted user_country values
+            //console.log(uniqueContinents);
+    
+            createDropDown(uniqueCountries);
+    
+            // when dropdown is updated, update all data
+            d3.select("#dropdown").on("change", updateData);
+    
+            updateData();
+    
+            })
+            .catch(function(error) {
+                console.error('Error loading or parsing data:', error);
+        });
+    
+        function createDropDown(dataArray) {
+                
+            var options = d3.select("#dropdown")
+                .selectAll("option")
+                .data(dataArray)
+                .enter()
+                .append("option")
+                .text(d => d)
+                .attr("value", d => d);
+            }
+    
+        function generateHTMLContent(d) {
+            let htmlContent = '';
+            
+            if (d["Agency (1)"] !== "NA") {
+                htmlContent += `<p>Between the <b>US</b> (${d["Agency (1)"]}) and `;
+            }else{
+                htmlContent += `<p>Between the <b>US</b> and `;
+            }
+            if (d["Agency (2)"] !== "NA") {
+                htmlContent += `<b>${d.endCountry}</b> (${d["Agency (2)"]})</p>`;
+            }else{
+                htmlContent += `<b>${d.endCountry}</b></p>`;
+            }
+            if (d["Date of signature"] !== "NA") {
+                htmlContent += `<p><b>Date of signature</b>: ${d["Date of signature"]}</p>`;
+            }
+            if (d["Entry into force"] !== "NA") {
+                htmlContent += `<p><b>Entry into force</b>: ${d["Entry into force"]}</p>`;
+            }
+            if (d["Type"] !== "NA") {
+                htmlContent += `<p><b>Type</b>: ${d["Type"]}</p>`;
+            }
+            if (d["Types of data exchanged"] !== "NA") {
+                htmlContent += `<p><b>Types of data exchanged</b>: ${d["Types of data exchanged"]}</p>`;
+            }
+            if (d["Purpose"] !== "NA") {
+                htmlContent += `<p><b>Purpose</b>: ${d["Purpose"]}</p>`;
+            }
+            if (d["Other"] !== "NA") {
+                htmlContent += `<p><b>Other information</b>: ${d["Other"]}</p>`;
+            }
+    
+            return htmlContent;
+        }
+    
+        function updateData(){
+            const curValue = d3.select("#dropdown").property("value");
+            //console.log(curValue)
+            
+            const filteredData = globalData.filter((d) => d.endCountry == curValue)
+    
+            //console.log(filteredData)
+    
+            const container = d3.select("#container");
+            
+            // Clear existing content
+            container.html('');
+    
+            // Group data by country
+            const uniqueEntries = d3.groups(filteredData, d => d.Title);
+    
+            // Sort the groups alphabetically by country name
+            uniqueEntries.sort((a, b) => d3.ascending(a[0], b[0]));
+    
+            uniqueEntries.forEach(([country, entries]) => {
+                // Add country name as a <p> element
+                container.append('p')
+                         .attr('class', 'country-name')
+                         .text(country);
+    
+                // Add entries for the country
+                entries.forEach(entry => {
+                    container.append('div')
+                             .attr('class', 'data-div')
+                             .html(generateHTMLContent(entry));
+                });
+            });
+    
+        }
+    </script>
+</body>
+</html>

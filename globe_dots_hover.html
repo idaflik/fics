@@ -151,7 +151,7 @@
         .then(res => res.json())
         .then(countries => {
             countriesData = countries; // Store the GeoJSON data globally
-            console.log(countriesData)
+            // console.log(countriesData)
             const propertyNames = Object.keys(countries.features[0].properties);
             // Remove 'type' and 'geometry' properties from button creation
             const excludedProperties = ["name", "name_long", "iso_a2", "iso_a3", "pop_est", "Status"];

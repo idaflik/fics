@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        html{
+            scroll-behavior: smooth;
+        }
         body{
             margin: 0px
         }
@@ -26,6 +29,9 @@
             width: calc(100% - 100px);
             height: 85vh;
             border: none;
+        }
+        .combo{
+            height: 230vh;
         }
         .textwidth {
             width: calc(100% - 100px);
@@ -150,7 +156,7 @@
         <p>(incomplete data)</p>
         <p>positions of circles are based on abstract geographical location, length of line is not representing any data (so actually not very good datavis practice but bloomberg did it too ;))</p>
         <iframe src = "globe_hexshapes.html"></iframe> -->
-        <iframe src = "globe_arcs.html"></iframe>
+        <iframe class = "combo" src = "us_agreements.html"></iframe>
     </div>
 </body>
 </html>
