@@ -66,7 +66,8 @@
     </style>
 </head>
 <body>
-    <div>Select region: <select id="dropdown">
+    <div>Select region: <select id="dropdown"></select><br>
+        Select system: <select id="dropdown2">
     </select></div>
     <div id = "table">
         <div id = "container">
@@ -80,29 +81,33 @@
     
     let globalData; 
     
-    d3.csv("https://raw.githubusercontent.com/idaflik/fics/main/output/systems_tables.csv")
+    d3.csv("output/systems_tables.csv")
     .then(function(data) {
 
         // Log the data
-        //console.log(data);
+        // console.log(data);
 
         globalData = data;
 
         // Extract user_country values
         const continents = data.map(d => d.continent).sort();
         const countries = data.map(d => d.user_country).sort();
+        const systems = data.map(d => d.systems).sort();
 
         // Get unique user_country values
-        const uniqueContinents = [...new Set(continents)];
+        const uniqueContinents = ["all regions", ...new Set(continents)];
         const uniqueCountries = [...new Set(countries)];
+        const uniqueSystems = ["all systems", ...new Set(systems)];
 
         // Log the extracted user_country values
-        //console.log(uniqueContinents);
+        // console.log(uniqueSystems);
 
-        createDropDown(uniqueContinents);
+        createDropDown(uniqueContinents, "#dropdown");
+        createDropDown(uniqueSystems, "#dropdown2");
 
         // when dropdown is updated, update all data
         d3.select("#dropdown").on("change", updateData);
+        d3.select("#dropdown2").on("change", updateData);
 
         updateData();
 
@@ -111,9 +116,9 @@
             console.error('Error loading or parsing data:', error);
     });
 
-    function createDropDown(dataArray) {
+    function createDropDown(dataArray, domID) {
             
-        var options = d3.select("#dropdown")
+        var options = d3.select(domID)
             .selectAll("option")
             .data(dataArray)
             .enter()
@@ -152,11 +157,26 @@
 
     function updateData(){
         const curValue = d3.select("#dropdown").property("value");
-        //console.log(curValue)
+        const curValue2 = d3.select("#dropdown2").property("value");
+        console.log(curValue)
         
-        const filteredData = globalData.filter((d) => d.continent == curValue)
+        let filteredData1;
+        if(curValue !== "all regions"){
+            filteredData1 = globalData.filter((d) => d.continent == curValue)
+        } else {
+            filteredData1 = globalData
+        }
 
-        //console.log(filteredData)
+        console.log(filteredData1)
+
+        let filteredData;
+        if(curValue2 !== "all systems"){
+            filteredData = filteredData1.filter((d) => d.systems == curValue2)
+        } else {
+            filteredData = filteredData1
+        }
+
+        console.log(filteredData)
 
         const container = d3.select("#container");
         

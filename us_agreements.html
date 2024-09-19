@@ -169,13 +169,12 @@
                 .domain([1,4]);
 
         // Fetch the GeoJSON data and create buttons when the page loads
-        // this file works: fetch('https://raw.githubusercontent.com/idaflik/data/master/systems_hex_max.geojson')
-        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/coastline_interrupted.geojson')
+        fetch('output/coastline_interrupted.geojson')
         .then(res => res.json())
         .then(polygons => {
             let polygonData = polygons; 
 
-            d3.csv('https://raw.githubusercontent.com/idaflik/fics/main/output/agreements_centroids.csv',
+            d3.csv('output/agreements_centroids.csv',
                 function(d) {
                     return {
                         ...d,  // retain all original columns
@@ -270,7 +269,7 @@
     
         let globalData; 
         
-        d3.csv("https://raw.githubusercontent.com/idaflik/fics/main/output/agreements_centroids.csv")
+        d3.csv("output/agreements_centroids.csv")
         .then(function(data) {
     
             // Log the data

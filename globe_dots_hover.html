@@ -146,15 +146,14 @@
 
 
         // Fetch the GeoJSON data and create buttons when the page loads
-        // this file works: fetch('https://raw.githubusercontent.com/idaflik/data/master/systems_hex_max.geojson')
-        fetch('https://raw.githubusercontent.com/idaflik/fics/main/output/hex_aggregate_data_dateline_rewound.geojson')
+        fetch('output/hex_aggregate_data_dateline_rewound.geojson')
         .then(res => res.json())
         .then(countries => {
             countriesData = countries; // Store the GeoJSON data globally
             // console.log(countriesData)
             const propertyNames = Object.keys(countries.features[0].properties);
             // Remove 'type' and 'geometry' properties from button creation
-            const excludedProperties = ["name", "name_long", "iso_a2", "iso_a3", "pop_est", "Status"];
+            const excludedProperties = ["name", "name_long", "iso_a2", "iso_a3", "pop_est", "Status", "WAPIS", "WISDM", "WCC_ELISE"];
             const filteredPropertyNames = propertyNames.filter(property => !excludedProperties.includes(property) && property !== 'type' && property !== 'geometry');
             createButtons(filteredPropertyNames);
 
