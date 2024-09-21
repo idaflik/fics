@@ -1,0 +1,407 @@
+library(needs)
+needs(tidyverse,
+      glue,
+      sf,
+      readxl
+)
+
+## ALL SYSTEMS
+
+all <- read_excel("../input/Datasets/all_border_systems_data.xlsx", sheet = 2)%>%
+  select(- "interoperable_systems" , - "Notes" )%>%
+  mutate(user_country = str_to_title(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Côte D'ivoire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    grepl("Vatican", user_country) ~ "Vatican",
+    grepl("Congo", user_country) ~ str_replace_all(user_country, "Of The", "of the"),
+    grepl("Vincent", user_country) &  grepl("Grenadines", user_country) ~ "Saint Vincent and the Grenadines",
+    user_country == "The Gambia" ~ "Gambia",
+    user_country == "Cabo Verde" ~ "Cape Verde",
+    user_country == "Türkiye" ~ "Turkey",
+    user_country == "Sao Tome & Principe" ~ "São Tomé and Principe",
+    T ~ trimws(str_replace_all(str_replace_all(str_remove_all(user_country, "\\?|\\(.*\\)"), "&", "and"), "St ", "Saint "))
+  ))
+
+all2 <- read_excel("../input/Datasets/Copy of all_border_systems_data with goTravel.xlsx", sheet = 2)%>%
+  select(- "interoperable_systems" , - "Notes" )%>%
+  mutate(user_country = str_to_title(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Côte D'ivoire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    grepl("Vatican", user_country) ~ "Vatican",
+    grepl("Congo", user_country) ~ str_replace_all(user_country, "Of The", "of the"),
+    grepl("Vincent", user_country) &  grepl("Grenadines", user_country) ~ "Saint Vincent and the Grenadines",
+    user_country == "The Gambia" ~ "Gambia",
+    user_country == "Cabo Verde" ~ "Cape Verde",
+    user_country == "Türkiye" ~ "Turkey",
+    user_country == "Sao Tome & Principe" ~ "São Tomé and Principe",
+    T ~ trimws(str_replace_all(str_replace_all(str_remove_all(user_country, "\\?|\\(.*\\)"), "&", "and"), "St ", "Saint "))
+  ))%>%
+  ## delete less complete duplicate of gambia
+  filter(!(user_country == "Gambia" & is.na(MIDAS_implemented)))
+
+all.equal(all, all2, check.names = T, use.names = T)
+
+full_join(
+  all %>% mutate(checkcol_1 = T),
+  all2 %>% mutate(checkcol_2 = T)
+)%>%
+  filter(checkcol_1 != T | checkcol_2 != T )
+
+## individual
+
+## PISCES
+
+pisces <- read_excel("../input/Datasets/all_border_systems_data.xlsx", sheet = 5) %>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Cote D'voire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Phillipines" ~ "Philippines",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("macedonia", user_country) ~ "North Macedonia",
+    grepl("Herzegovina", user_country) ~ "Bosnia and Herzegovina",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    T ~ user_country
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "PISCES")
+
+## MIDAS
+
+midas <- read_excel("../input/Datasets/all_border_systems_data.xlsx", sheet = 6) %>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Cote D'voire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Phillipines" ~ "Philippines",
+    grepl("Gambia", user_country) ~ "Gambia",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("macedonia", user_country) ~ "North Macedonia",
+    grepl("Democratic", user_country) &  grepl("Congo", user_country) ~ "Democratic Republic of the Congo",
+    grepl("Herzegovina", user_country) ~ "Bosnia and Herzegovina",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    T ~ user_country
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "MIDAS")
+
+## ATS-G
+
+## note: no geometry for caricom
+
+atsg <- read_excel("../input/Datasets/all_border_systems_data.xlsx", sheet = 7) %>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Cote D'voire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Phillipines" ~ "Philippines",
+    grepl("caricom", user_country, ignore.case = T) ~ "CARICOM IMPACS",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("macedonia", user_country) ~ "North Macedonia",
+    grepl("Democratic", user_country) &  grepl("Congo", user_country) ~ "Democratic Republic of the Congo",
+    grepl("Herzegovina", user_country) ~ "Bosnia and Herzegovina",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    T ~ user_country
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "ATS-G")
+
+## GTAS
+
+gtas <- read_excel("../input/Datasets/all_border_systems_data.xlsx", sheet = 8) %>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Cote D'voire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Phillipines" ~ "Philippines",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("macedonia", user_country) ~ "North Macedonia",
+    grepl("Democratic", user_country) &  grepl("Congo", user_country) ~ "Democratic Republic of the Congo",
+    grepl("Herzegovina", user_country) ~ "Bosnia and Herzegovina",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    T ~ user_country
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "GTAS")
+
+## INTERPOL
+
+## note: no geometry for europol
+
+interpol <- read_excel("../input/Datasets/all_border_systems_data.xlsx", sheet = 9) %>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Cote D'voire"| user_country ==  "Côte D'ivoire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Phillipines" ~ "Philippines",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("Vatican", user_country) ~ "Vatican",
+    grepl("Congo", user_country) &  grepl("Democratic", user_country) ~ "Democratic Republic of the Congo",
+    grepl("Vincent", user_country) &  grepl("Grenadines", user_country) ~ "Saint Vincent and the Grenadines",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    user_country == "Cabo Verde" ~ "Cape Verde",
+    user_country == "Türkiye" ~ "Turkey",
+    user_country == "The Gambia" ~ "Gambia",
+    grepl("Korea", user_country) ~ "South Korea",
+    user_country == "Sao Tome & Principe" ~ "São Tomé and Principe",
+    # user_country == "St Kitts and Nevis" ~ "St. Kitts and Nevis",
+    user_country == "Bosnia-Herzegovina" ~ "Bosnia and Herzegovina",
+    T ~ trimws(str_replace_all(str_replace_all(str_remove_all(user_country, "\\?|\\(.*\\)"), "&", "and"), "St ", "Saint "))
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "WAPIS|I-24/7|[0-9]+"))%>%
+  mutate(start_operation = str_extract_all(entry_into_operation, "WAPIS|I-24/7|[0-9]+"))
+
+## goTravel
+
+gotravel <- read_excel("../input/Datasets/all_border_systems_data.xlsx", sheet = 3) %>%
+  select(-c("...17":"...36"))%>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "côte d'ivoire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Djbouti" ~ "Djibouti",
+    user_country == "Phillippines" ~ "Philippines",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("Vatican", user_country) ~ "Vatican",
+    grepl("Congo", user_country) &  grepl("Democratic", user_country) ~ "Democratic Republic of the Congo",
+    grepl("Vincent", user_country) &  grepl("Grenadines", user_country) ~ "Saint Vincent and the Grenadines",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    user_country == "Cabo Verde" ~ "Cape Verde",
+    user_country == "Türkiye" ~ "Turkey",
+    grepl("caricom", user_country, ignore.case = T) ~ "CARICOM IMPACS",
+    user_country == "The Gambia" ~ "Gambia",
+    user_country == "Sao Tome & Principe" ~ "São Tomé and Principe",
+    # user_country == "St Kitts and Nevis" ~ "St. Kitts and Nevis",
+    user_country == "Bosnia-Herzegovina" ~ "Bosnia and Herzegovina",
+    T ~ str_to_title(trimws(str_replace_all(str_replace_all(str_remove_all(user_country, "\\?|\\(.*\\)"), "&", "and"), "St ", "Saint ")))
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "goTravel")
+
+## WCC
+
+## note: no geometry for international orgs (eu.lisa, UNHCR)
+
+wcc <- read_excel("../input/Datasets/all_border_systems_data.xlsx", sheet = 4) %>%
+  filter(!is.na(user_country))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "WCC")
+
+combined <- atsg %>%
+  mutate(entry_into_operation = as.character(entry_into_operation))%>%
+  rename(connected_to = ATSG_connected_with)%>%
+  bind_rows(pisces %>%
+              rename(connected_to = PISCES_connected_to))%>%
+  bind_rows(midas %>%
+              rename(connected_to = MIDAS_connected_to))%>%
+  bind_rows(gtas %>%
+              mutate(date_of_agreement = as.character(date_of_agreement),
+                     entry_into_operation = as.character(entry_into_operation))%>%
+              rename(connected_to = GTAS_connected_to))%>%
+  bind_rows(interpol %>%
+              rename(connected_to = connected_systems, systems = installed_systems))%>%
+  bind_rows(gotravel %>%
+              mutate(date_of_agreement = as.character(date_of_agreement))%>%
+              rename(connected_to = GoTravel_connected_with))%>%
+  bind_rows(wcc %>%
+              rename(connected_to = connected_with))
+
+## new
+
+pisces <- read_excel("../input/Datasets/Copy of all_border_systems_data with goTravel.xlsx", sheet = 5) %>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Cote D'voire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Phillipines" ~ "Philippines",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("macedonia", user_country) ~ "North Macedonia",
+    grepl("Herzegovina", user_country) ~ "Bosnia and Herzegovina",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    T ~ user_country
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "PISCES")
+
+## MIDAS
+
+midas <- read_excel("../input/Datasets/Copy of all_border_systems_data with goTravel.xlsx", sheet = 6) %>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Cote D'voire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Phillipines" ~ "Philippines",
+    grepl("Gambia", user_country) ~ "Gambia",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("macedonia", user_country) ~ "North Macedonia",
+    grepl("Democratic", user_country) &  grepl("Congo", user_country) ~ "Democratic Republic of the Congo",
+    grepl("Herzegovina", user_country) ~ "Bosnia and Herzegovina",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    T ~ user_country
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "MIDAS")
+
+## ATS-G
+
+## note: no geometry for caricom
+
+atsg <- read_excel("../input/Datasets/Copy of all_border_systems_data with goTravel.xlsx", sheet = 7) %>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Cote D'voire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Phillipines" ~ "Philippines",
+    grepl("caricom", user_country, ignore.case = T) ~ "CARICOM IMPACS",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("macedonia", user_country) ~ "North Macedonia",
+    grepl("Democratic", user_country) &  grepl("Congo", user_country) ~ "Democratic Republic of the Congo",
+    grepl("Herzegovina", user_country) ~ "Bosnia and Herzegovina",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    T ~ user_country
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "ATS-G")
+
+## GTAS
+
+gtas <- read_excel("../input/Datasets/Copy of all_border_systems_data with goTravel.xlsx", sheet = 8) %>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Cote D'voire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Phillipines" ~ "Philippines",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("macedonia", user_country) ~ "North Macedonia",
+    grepl("Democratic", user_country) &  grepl("Congo", user_country) ~ "Democratic Republic of the Congo",
+    grepl("Herzegovina", user_country) ~ "Bosnia and Herzegovina",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    T ~ user_country
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "GTAS")
+
+## INTERPOL
+
+## note: no geometry for europol
+
+interpol <- read_excel("../input/Datasets/Copy of all_border_systems_data with goTravel.xlsx", sheet = 9) %>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "Cote D'voire"| user_country ==  "Côte D'ivoire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Phillipines" ~ "Philippines",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("Vatican", user_country) ~ "Vatican",
+    grepl("Congo", user_country) &  grepl("Democratic", user_country) ~ "Democratic Republic of the Congo",
+    grepl("Vincent", user_country) &  grepl("Grenadines", user_country) ~ "Saint Vincent and the Grenadines",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    user_country == "Cabo Verde" ~ "Cape Verde",
+    user_country == "Türkiye" ~ "Turkey",
+    user_country == "The Gambia" ~ "Gambia",
+    grepl("Korea", user_country) ~ "South Korea",
+    user_country == "Sao Tome & Principe" ~ "São Tomé and Principe",
+    # user_country == "St Kitts and Nevis" ~ "St. Kitts and Nevis",
+    user_country == "Bosnia-Herzegovina" ~ "Bosnia and Herzegovina",
+    T ~ trimws(str_replace_all(str_replace_all(str_remove_all(user_country, "\\?|\\(.*\\)"), "&", "and"), "St ", "Saint "))
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "WAPIS|I-24/7|[0-9]+"))%>%
+  mutate(start_operation = str_extract_all(entry_into_operation, "WAPIS|I-24/7|[0-9]+"))
+
+## goTravel
+
+gotravel <- read_excel("../input/Datasets/Copy of all_border_systems_data with goTravel.xlsx", sheet = 3) %>%
+  filter(!is.na(user_country))%>%
+  mutate(user_country = case_when(
+    user_country == "côte d'ivoire" ~ "Côte d'Ivoire",
+    user_country == "Eswatini" ~ "eSwatini",
+    user_country == "Djbouti" ~ "Djibouti",
+    user_country == "Phillippines" ~ "Philippines",
+    grepl("Somaliland", user_country) ~ "Somaliland",
+    grepl("Vatican", user_country) ~ "Vatican",
+    grepl("Congo", user_country) &  grepl("Democratic", user_country) ~ "Democratic Republic of the Congo",
+    grepl("Vincent", user_country) &  grepl("Grenadines", user_country) ~ "Saint Vincent and the Grenadines",
+    user_country == "Timor Leste" ~ "Timor-Leste",
+    user_country == "Cabo Verde" ~ "Cape Verde",
+    user_country == "Türkiye" ~ "Turkey",
+    grepl("caricom", user_country, ignore.case = T) ~ "CARICOM IMPACS",
+    user_country == "The Gambia" ~ "Gambia",
+    user_country == "Sao Tome & Principe" ~ "São Tomé and Principe",
+    # user_country == "St Kitts and Nevis" ~ "St. Kitts and Nevis",
+    user_country == "Bosnia-Herzegovina" ~ "Bosnia and Herzegovina",
+    T ~ str_to_title(trimws(str_replace_all(str_replace_all(str_remove_all(user_country, "\\?|\\(.*\\)"), "&", "and"), "St ", "Saint ")))
+  ))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "goTravel")
+
+## WCC
+
+## note: no geometry for international orgs (eu.lisa, UNHCR)
+
+wcc <- read_excel("../input/Datasets/Copy of all_border_systems_data with goTravel.xlsx", sheet = 4) %>%
+  filter(!is.na(user_country))%>%
+  mutate(agreement = str_extract_all(date_of_agreement, "[0-9]+"),
+         start_operation = str_extract_all(entry_into_operation, "[0-9]+"),
+         systems = "WCC")
+
+combined2 <- atsg %>%
+  mutate(entry_into_operation = as.character(entry_into_operation))%>%
+  rename(connected_to = ATSG_connected_with)%>%
+  bind_rows(pisces %>%
+              rename(connected_to = PISCES_connected_to))%>%
+  bind_rows(midas %>%
+              rename(connected_to = MIDAS_connected_to))%>%
+  bind_rows(gtas %>%
+              mutate(date_of_agreement = as.character(date_of_agreement),
+                     entry_into_operation = as.character(entry_into_operation))%>%
+              rename(connected_to = GTAS_connected_to))%>%
+  bind_rows(interpol %>%
+              rename(connected_to = connected_systems, systems = installed_systems))%>%
+  bind_rows(gotravel %>%
+              mutate(date_of_agreement = as.character(date_of_agreement))%>%
+              rename(connected_to = GoTravel_connected_with))%>%
+  bind_rows(wcc %>%
+              rename(connected_to = connected_with))
+
+all.equal(combined, combined2, check.names = T, use.names = T)
+
+test <- full_join(
+  combined %>% mutate(checkcol_1 = T),
+  combined2 %>% mutate(checkcol_2 = T)
+)%>%
+  relocate(c(checkcol_1, checkcol_2, systems), .before = "user_country")
+
+diff <- test %>%
+  filter(is.na(checkcol_1) | is.na(checkcol_2))
+
+## compare between overview and details pages
+
+overview <- all2 %>%
+  gather(-user_country, key = systems, value = status)%>%
+  mutate(systems = str_remove_all(systems, "_implemented"),
+         systems = if_else(systems == "ATSG", "ATS-G", systems))
+
+detailpages <- combined2 %>%
+  select(user_country, systems, status = installed)
+
+compare <- full_join(
+  overview %>% mutate(overview = T),
+  detailpages %>% mutate(detailpages = T)
+)
